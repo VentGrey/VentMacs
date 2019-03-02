@@ -28,6 +28,8 @@ There are two things you can do about this warning:
     ("144f05e2dfa7a7b50cad0c3519498ac064cc9da1f194b8ea27d0fb20129d8d7a" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(display-line-numbers t)
  '(fill-column 80)
+ '(flycheck-rust-cargo-executable "~/.cargo/bin/")
+ '(flycheck-rust-clippy-executable "~/.cargo/bin/cargo-clippy")
  '(hl-todo-keyword-faces
    (quote
     (("TODO" . "#dc752f")
@@ -53,22 +55,36 @@ There are two things you can do about this warning:
  '(neo-theme (quote icons))
  '(package-selected-packages
    (quote
-    (git-gutter spaceline-all-the-icons ivy-explorer autopair rainbow-delimiters imenu-list fill-column-indicator srcery-theme all-the-icons-dired counsel all-the-icons-ivy all-the-icons neotree company-lsp lsp-ui lsp-mode lsp-rustmode flycheck-inline flycheck-rust company racer flycheck rust-mode evil spaceline spacemacs-theme)))
+    (exec-path-from-shell eglot doom-modeline yasnippet git-gutter spaceline-all-the-icons ivy-explorer autopair rainbow-delimiters imenu-list fill-column-indicator srcery-theme all-the-icons-dired counsel all-the-icons-ivy all-the-icons neotree lsp-rustmode flycheck-inline flycheck-rust company racer flycheck rust-mode evil spaceline spacemacs-theme)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
+ '(powerline-default-separator (quote wave))
+ '(racer-rust-src-path
+   "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src" t)
+ '(rust-cargo-bin "~/.cargo/bin/")
+ '(rust-format-on-save t)
+ '(rust-rustfmt-bin "~/.cargo/bin/cargo-fmt")
+ '(scalable-fonts-allowed t)
  '(scroll-bar-mode nil)
  '(show-paren-mode t)
  '(size-indication-mode t)
+ '(spaceline-all-the-icons-icon-set-bookmark (quote heart))
+ '(spaceline-all-the-icons-icon-set-eyebrowse-slot (quote solid))
+ '(spaceline-all-the-icons-icon-set-flycheck-slim (quote outline))
+ '(spaceline-all-the-icons-icon-set-git-ahead (quote commit))
+ '(spaceline-all-the-icons-icon-set-sun-time (quote sun/moon))
+ '(spaceline-all-the-icons-icon-set-window-numbering (quote solid))
  '(spaceline-buffer-id-max-length 40))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(custom-documentation ((t (:family "FuraCode NF Regular")))))
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(require 'spaceline-config)
-(spaceline-spacemacs-theme)
+
+;; Fuente del sistema
+(set-frame-font "FiraCode 12")
 
 ;; Quitar los archivos castrosos
 (setq make-backup-files nil) ; stop creating backup~ files
@@ -116,3 +132,38 @@ There are two things you can do about this warning:
 ;; Tagbar perrona
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (global-set-key (kbd "C-'") #'imenu-list-smart-toggle)
+
+;; Indicador de cagaderos
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+
+;; Doom modeline (Porque Spaceline hace un desmadre)
+(doom-modeline-mode 1)
+
+;; Eglot para ver si si sirve el RLS ahora
+(add-hook 'rust-mode-hook 'eglot-ensure)
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+
+
+(require 'eglot)
+(add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
+(add-hook 'c-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'eglot-ensure)
+
+;; SHELL PATH
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+;; NEOTREE CON COSAS PERRONAS DE EVIL
+    (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "SPC") 'neotree-quick-look)
+    (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+    (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+    (evil-define-key 'normal neotree-mode-map (kbd "g") 'neotree-refresh)
+    (evil-define-key 'normal neotree-mode-map (kbd "n") 'neotree-next-line)
+    (evil-define-key 'normal neotree-mode-map (kbd "p") 'neotree-previous-line)
+    (evil-define-key 'normal neotree-mode-map (kbd "A") 'neotree-stretch-toggle)
+    (evil-define-key 'normal neotree-mode-map (kbd "H") 'neotree-hidden-file-toggle)
