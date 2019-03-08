@@ -1,2 +1,0 @@
-;;; -*- no-byte-compile: t -*-
-(define-package "ivy-explorer" "20190116.1506" "Dynamic file browsing grid using ivy" '((emacs "25") (ivy "0.10.0")) :commit "54751459b795d952cc0e42d7447248c934fde847" :keywords '("convenience" "files" "matching") :authors '(("Clemens Radermacher" . "clemera@posteo.net")) :maintainer '("Clemens Radermacher" . "clemera@posteo.net") :url "https://github.com/clemera/ivy-explorer")
