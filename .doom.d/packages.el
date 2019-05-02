@@ -8,6 +8,10 @@
 
 ;; SRCERY para que se vea perrón
 (package! srcery-theme)
+(package! ghub)
+(package! org-notebook)
+(package! spacemacs-theme)
+
 
 ;; Quitar paquetes culeros
 (package! treemacs :disable t)
