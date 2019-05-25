@@ -1,21 +1,20 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
+;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
+
+;; Place your private configuration here
 
 
 ;; ----- SET THEME
-(load-theme 'srcery t)
+(load-theme 'doom-molokai t)
 
 ;; ----- FONT CONFIG
 
-<<<<<<< HEAD
-(setq doom-font (font-spec :family "Source Code Pro" :size 13)
-=======
-(setq doom-font (font-spec :family "Source Code Pro" :size 12)
->>>>>>> e219d73f13c0d4f615079d27ffa59dd9cfa73f6b
-      doom-variable-pitch-font (font-spec :family "Source Code Pro")
-      doom-unicode-font (font-spec :family "Source Code Pro")
-      doom-big-font (font-spec :family "Source Code Pro" :size 19))
+(setq doom-font (font-spec :family "Fira Code" :size 14)
+      doom-variable-pitch-font (font-spec :family "Fira Code")
+      doom-unicode-font (font-spec :family "Fira Code")
+      doom-big-font (font-spec :family "Fira Code" :size 19))
 
 ;; ------- NEOTREE CONFIG
   (require 'neotree)
@@ -30,7 +29,6 @@
 (setq doom-modeline-github-interval (* 30 60))
 (setq doom-modeline-env-version t)
 
-
 ;; --------- Neotree visuals
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (after! doom-themes
@@ -40,19 +38,20 @@
 (setq python-shell-interpreter "python3"
     flycheck-python-pycompile-executable "python3")
 
-<<<<<<< HEAD
+(use-package pipenv
+  :hook (python-mode . pipenv-mode)
+  :init
+  (setq
+   pipenv-projectile-after-switch-function
+   #'pipenv-projectile-after-switch-extended))
+
 ;; ------- RUST CONFIGURATIONS (AGAIN PTM)
 (setq flycheck-rust-cargo-executable "/home/omar/.cargo/bin/")
 (setq flycheck-rust-executable "/home/omar/.cargo/bin/rustc")
+(with-eval-after-load 'rust-mode
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 
-
-=======
-;; ------- RUST CONFIG
-(setq flycheck-rust-cargo-executable "/home/omar/.cargo/bin/")
-(setq flycheck-rust-executable "/home/omar/.cargo/bin/rustc")
-
->>>>>>> e219d73f13c0d4f615079d27ffa59dd9cfa73f6b
 ;; ------ LSP Configuration
 (use-package lsp-mode
   :config
@@ -60,11 +59,7 @@
   (add-hook 'python-mode-hook #' lsp)
   (add-hook 'rust-mode-hook #' lsp)
   ;: C++ Config
-<<<<<<< HEAD
 )
-=======
-  (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error")))
->>>>>>> e219d73f13c0d4f615079d27ffa59dd9cfa73f6b
 
 (use-package lsp-ui
   :requires lsp-mode flycheck
@@ -100,7 +95,4 @@
   (setq company-transformers nil
         company-lsp-async t
         company-lsp-cache-candidates nil))
-<<<<<<< HEAD
 
-=======
->>>>>>> e219d73f13c0d4f615079d27ffa59dd9cfa73f6b
