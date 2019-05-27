@@ -6,6 +6,12 @@
 ;; Place your private configuration here
 
 
+(defvar xdg-data (getenv "XDG_DATA_HOME"))
+(defvar xdg-config (getenv "XDG_CONFIG_HOME"))
+
+;; ----- IVY CONFIGS
+(setq +ivy-buffer-icons t)
+
 ;; ----- SET THEME
 (load-theme 'doom-molokai t)
 
@@ -29,6 +35,15 @@
 (setq doom-modeline-github-interval (* 30 60))
 (setq doom-modeline-env-version t)
 
+(setq +doom-modeline-buffer-file-name-style 'relative-from-project
+      show-trailing-whitespace t)
+(add-hook! minibuffer-setup (setq-local show-trailing-whitespace nil))
+
+
+;; -------- Change Banner
+(setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
+
+
 ;; --------- Neotree visuals
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (after! doom-themes
@@ -50,6 +65,7 @@
 (setq flycheck-rust-executable "/home/omar/.cargo/bin/rustc")
 (with-eval-after-load 'rust-mode
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+(setq +rust-src-dir "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
 
 
 ;; ------ LSP Configuration
@@ -96,3 +112,5 @@
         company-lsp-async t
         company-lsp-cache-candidates nil))
 
+;; ESHELL
+(add-hook 'eshell-mode-hook #'hide-mode-line-mode)
