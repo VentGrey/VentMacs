@@ -13,11 +13,15 @@
 (setq +ivy-buffer-icons t)
 
 ;; ----- SET THEME
-(load-theme 'doom-molokai t)
+(load-theme 'doom-dracula t)
 
+;; ----- Tamaño de inicio
+  (setq initial-frame-alist
+        '((width . 110)
+          (height . 65)))
 ;; ----- FONT CONFIG
 
-(setq doom-font (font-spec :family "Fira Code" :size 14)
+(setq doom-font (font-spec :family "Fira Code" :size 12)
       doom-variable-pitch-font (font-spec :family "Fira Code")
       doom-unicode-font (font-spec :family "Fira Code")
       doom-big-font (font-spec :family "Fira Code" :size 19))
@@ -67,11 +71,27 @@
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 (setq +rust-src-dir "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
 
+;; ------- Rust VERY BASIC configurations
+
+(def-package! rust-mode
+  :mode "\\.rs$"
+  :config
+  (flycheck-mode))
+
+(def-package! lsp-rust
+  :after (lsp-mode lsp-ui rust-mode)
+  :config
+  (setq lep-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  :hook
+  (rust-mode . lsp-rust-enable))
 
 ;; ------ LSP Configuration
 (use-package lsp-mode
   :config
   (add-hook 'c++-mode-hook #' lsp)
+  (add-hook 'c-mode-hook #' lsp)
+  (setq lsp-clients-clangd-executable "/usr/bin/clangd-7")
+
   (add-hook 'python-mode-hook #' lsp)
   (add-hook 'rust-mode-hook #' lsp)
   ;: C++ Config
@@ -112,5 +132,15 @@
         company-lsp-async t
         company-lsp-cache-candidates nil))
 
+(def-package! lsp-mode
+  :hook
+  (haskell-mode . lsp)
+  (python-mode . lsp)
+  :config
+  (require 'lsp-clients))
+
 ;; ESHELL
 (add-hook 'eshell-mode-hook #'hide-mode-line-mode)
+
+;; IVY
+(setq +ivy-buffer-icons t)
