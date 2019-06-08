@@ -5,7 +5,11 @@
 
 ;; Place your private configuration here
 
-
+(setq-default
+ browse-url-browser-function 'browse-url-default-browser
+ confirm-kill-emacs 'y-or-n-p
+ doom-localleader-key ","
+ doom-themes-enable-bold nil
 (defvar xdg-data (getenv "XDG_DATA_HOME"))
 (defvar xdg-config (getenv "XDG_CONFIG_HOME"))
 
@@ -19,12 +23,35 @@
   (setq initial-frame-alist
         '((width . 110)
           (height . 65)))
-;; ----- FONT CONFIG
 
-(setq doom-font (font-spec :family "Fira Code" :size 12)
-      doom-variable-pitch-font (font-spec :family "Fira Code")
-      doom-unicode-font (font-spec :family "Fira Code")
-      doom-big-font (font-spec :family "Fira Code" :size 19))
+;; ----- FONT CONFIG
+(setq-default
+ display-line-numbers-type 'relative
+ doom-big-font (font-spec :family "Fira Code" :size 12)
+ doom-font (font-spec :family "Fira Code" :size 14)
+ doom-variable-pitch-font (font-spec :family "Noto Sans" :size 14)
+ doom-themes-enable-bold nil
+ frame-title-format
+ '((:eval (if (buffer-file-name)
+              (if (projectile-project-p)
+                  (concat "[" (projectile-project-name) "] "
+                          (file-relative-name (buffer-file-name) (projectile-project-root)))
+                (abbreviate-file-name (buffer-file-name)))
+            "%b"))
+   " - Emacs"))
+
+(defun window-system-setup (&optional frame)
+  (with-selected-frame (or frame (selected-frame))
+    (when window-system
+      ;; (set-fontset-font t 'han "-unknown-NotoSansCJKSC-normal-r-normal-*-20-*-*-*-m-*-iso10646-1")
+      (set-fontset-font t 'kana (font-spec :family "Fira Code" :size 20))
+      (set-fontset-font t 'cjk-misc (font-spec :family "Fira Code" :size 20))
+      (set-fontset-font t 'han (font-spec :family "Fira Code" :size 20))
+      )))
+
+(add-hook! 'after-make-frame-functions 'window-system-setup)
+
+(window-system-setup (selected-frame))
 
 ;; ------- NEOTREE CONFIG
   (require 'neotree)
@@ -34,7 +61,7 @@
 (setq doom-modeline-icon t)
 (setq doom-neotree-file-icons t)
 (setq doom-modeline-major-mode-icon t)
-(setq doom-modeline-major-mode-color-icon nil)
+(setq doom-modeline-major-mode-color-icon t)
 (setq doom-modeline-github t)
 (setq doom-modeline-github-interval (* 30 60))
 (setq doom-modeline-env-version t)
@@ -72,6 +99,7 @@
 (setq +rust-src-dir "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
 
 ;; ------- Rust VERY BASIC configurations
+(add-hook! 'rust-mode-hook 'cargo-minor-mode)
 
 (def-package! rust-mode
   :mode "\\.rs$"
@@ -86,6 +114,25 @@
   (rust-mode . lsp-rust-enable))
 
 ;; ------ LSP Configuration
+
+(def-package! lsp-ui
+  :after lsp-mode
+  :hook (lsp-mode . lsp-ui-mode)
+  :config
+  (setq
+   lsp-ui-doc-max-height 8
+   lsp-ui-doc-max-width 35
+   lsp-ui-sideline-ignore-duplicate t))
+
+(def-package! company-lsp
+  :after lsp-mode
+  :config
+  (setq company-lsp-enable-recompletion t)
+  (set-company-backend! 'lsp-mode '(company-lsp)))
+
+(require 'lsp-clients)
+(add-hook! 'rust-mode-hook 'lsp)
+
 (use-package lsp-mode
   :config
   (add-hook 'c++-mode-hook #' lsp)
@@ -132,15 +179,12 @@
         company-lsp-async t
         company-lsp-cache-candidates nil))
 
-(def-package! lsp-mode
-  :hook
-  (haskell-mode . lsp)
-  (python-mode . lsp)
-  :config
-  (require 'lsp-clients))
-
 ;; ESHELL
 (add-hook 'eshell-mode-hook #'hide-mode-line-mode)
 
 ;; IVY
 (setq +ivy-buffer-icons t)
+
+;; LaTeX
+(setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
+(setq-hook! 'org-mode-hook +spellcheck-immediately nil)

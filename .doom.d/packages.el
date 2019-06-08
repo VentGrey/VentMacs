@@ -9,15 +9,7 @@
 (package! ghub)
 (package! org-notebook)
 (package! spacemacs-theme)
+(package! cargo)
 
 ;; Quitar paquetes culeros
 (package! treemacs :disable t)
-
-
-;; Hardcodear paquetes de rust
-(package! rust-mode)
-(package! racer)
-(package! flycheck-rust)
-(package! lsp-rust)
-(package! lsp-mode)
-(package! lsp-ui :recipe (:fetcher github :repo "emacs-lsp/lsp-ui"))
