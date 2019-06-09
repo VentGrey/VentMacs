@@ -10,6 +10,8 @@
  confirm-kill-emacs 'y-or-n-p
  doom-localleader-key ","
  doom-themes-enable-bold nil
+ user-full-name    "VentGrey"
+ user-mail-address "omarpurataf@gmail.com")
 (defvar xdg-data (getenv "XDG_DATA_HOME"))
 (defvar xdg-config (getenv "XDG_CONFIG_HOME"))
 
