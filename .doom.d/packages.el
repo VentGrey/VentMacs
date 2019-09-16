@@ -10,6 +10,6 @@
 (package! org-notebook)
 (package! spacemacs-theme)
 (package! cargo)
-
-;; Quitar paquetes culeros
-(package! treemacs :disable t)
+(package! kaolin-themes)
+;; Show beautiful parenthesis
+(package! rainbow-delimiters)

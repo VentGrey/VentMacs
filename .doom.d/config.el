@@ -19,7 +19,7 @@
 (setq +ivy-buffer-icons t)
 
 ;; ----- SET THEME
-(load-theme 'doom-dracula t)
+(load-theme 'doom-moonlight t)
 
 ;; ----- Tamaño de inicio
   (setq initial-frame-alist
@@ -56,8 +56,8 @@
 (window-system-setup (selected-frame))
 
 ;; ------- NEOTREE CONFIG
-  (require 'neotree)
-  (global-set-key [f3] 'neotree-toggle)
+(require 'neotree)
+(global-set-key [f3] 'neotree-toggle)
 
 ;; -------- Modeline CONFIG
 (setq doom-modeline-icon t)
@@ -78,9 +78,8 @@
 
 
 ;; --------- Neotree visuals
-(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 (after! doom-themes
-  (remove-hook 'doom-load-theme-hook #'doom-themes-neotree-config))
+  (setq doom-themes-neotree-file-icons t)) ; enables diverse icon-set
 
 ;; ------ PYTHON CONFIG
 (setq python-shell-interpreter "python3"
