@@ -138,7 +138,7 @@
   :config
   (add-hook 'c++-mode-hook #' lsp)
   (add-hook 'c-mode-hook #' lsp)
-  (setq lsp-clients-clangd-executable "/usr/bin/clangd-7")
+  (setq lsp-clients-clangd-executable "/usr/bin/clangd-8")
 
   (add-hook 'python-mode-hook #' lsp)
   (add-hook 'rust-mode-hook #' lsp)
