@@ -6,7 +6,7 @@ Es solo una micro-distribución (por no decir dotfiles) para doom emacs.
 
 Es personal así que la estaré manteniendo de acuerdo a mis necesidades, nada
 especial, de igual forma si deseas instalar mis archivos de configuración
-te dejo las instrucciones
+te dejo las instrucciones.
 
 # DEPENDENCIAS
 
@@ -59,7 +59,7 @@ siguientes características:
   -Wall -queteimporta`)
 * Integración con `Pipenv`, no más `venv + pip` en vergos de comandos.
 * Soporte para Rust mejorado, ahora Cargo + Racer + RLS funcionan al 100%
-
+* Soporte de Omnisharp para C# y F#
 
 
 # Lenguajes de programación soportados
