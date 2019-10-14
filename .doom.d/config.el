@@ -19,7 +19,7 @@
 (setq +ivy-buffer-icons t)
 
 ;; ----- SET THEME
-(load-theme 'doom-moonlight t)
+(load-theme 'doom-molokai t)
 
 ;; ----- Tamaño de inicio
   (setq initial-frame-alist
@@ -93,11 +93,10 @@
    #'pipenv-projectile-after-switch-extended))
 
 ;; ------- RUST CONFIGURATIONS (AGAIN PTM)
+ (with-eval-after-load 'rust-mode
 (setq flycheck-rust-cargo-executable "/home/omar/.cargo/bin/")
 (setq flycheck-rust-executable "/home/omar/.cargo/bin/rustc")
-(with-eval-after-load 'rust-mode
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
-(setq +rust-src-dir "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+(setq +rust-src-dir "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"))
 
 ;; ------- Rust VERY BASIC configurations
 (add-hook! 'rust-mode-hook 'cargo-minor-mode)
@@ -110,7 +109,7 @@
 (def-package! lsp-rust
   :after (lsp-mode lsp-ui rust-mode)
   :config
-  (setq lep-rust-rls-command '("rustup" "run" "nightly" "rls"))
+  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
   :hook
   (rust-mode . lsp-rust-enable))
 
