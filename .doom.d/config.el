@@ -15,6 +15,10 @@
 (defvar xdg-data (getenv "XDG_DATA_HOME"))
 (defvar xdg-config (getenv "XDG_CONFIG_HOME"))
 
+;; ----- PROPER ENCODING
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+
 ;; ----- IVY CONFIGS
 (setq +ivy-buffer-icons t)
 
@@ -32,7 +36,6 @@
  doom-big-font (font-spec :family "Fira Code" :size 12)
  doom-font (font-spec :family "Fira Code" :size 14)
  doom-variable-pitch-font (font-spec :family "Noto Sans" :size 14)
- doom-themes-enable-bold nil
  frame-title-format
  '((:eval (if (buffer-file-name)
               (if (projectile-project-p)
@@ -51,13 +54,14 @@
       (set-fontset-font t 'han (font-spec :family "Fira Code" :size 20))
       )))
 
+
+;; HOOKS
 (add-hook! 'after-make-frame-functions 'window-system-setup)
 
 (window-system-setup (selected-frame))
 
-;; ------- NEOTREE CONFIG
-(require 'neotree)
-(global-set-key [f3] 'neotree-toggle)
+;; ------- TREEMACS CONFIG
+(global-set-key [f3] 'treemacs)
 
 ;; -------- Modeline CONFIG
 (setq doom-modeline-icon t)
@@ -77,9 +81,10 @@
 (setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
 
 
-;; --------- Neotree visuals
-(after! doom-themes
-  (setq doom-themes-neotree-file-icons t)) ; enables diverse icon-set
+;; --------- Treemacs visuals
+;; Keep vanilla icons, I don't like doom ones
+(setq doom-themes-treemacs-theme nil)
+
 
 ;; ------ PYTHON CONFIG
 (setq python-shell-interpreter "python3"
@@ -136,7 +141,7 @@
 (use-package lsp-mode
   :config
   (add-hook 'c++-mode-hook #' lsp)
-  (add-hook 'c-mode-hook #' lsp)
+t (add-hook 'c-mode-hook #' lsp)
   (setq lsp-clients-clangd-executable "/usr/bin/clangd-8")
 
   (add-hook 'python-mode-hook #' lsp)
@@ -184,6 +189,16 @@
 
 ;; IVY
 (setq +ivy-buffer-icons t)
+
+;; IVY YASNIPPET
+(after! ivy
+(use-package! ivy-yasnippet
+  :commands (ivy-yasnippet)
+  :config
+  (map!
+   (:leader
+     (:prefix "s"
+       :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet)))))
 
 ;; LaTeX
 (setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
