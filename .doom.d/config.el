@@ -23,7 +23,7 @@
 (setq +ivy-buffer-icons t)
 
 ;; ----- SET THEME
-(load-theme 'doom-molokai t)
+(load-theme 'doom-dracula t)
 
 ;; ----- Tamaño de inicio
   (setq initial-frame-alist
@@ -64,10 +64,27 @@
 (global-set-key [f3] 'treemacs)
 
 ;; -------- Modeline CONFIG
+;; Enable icons
 (setq doom-modeline-icon t)
-(setq doom-neotree-file-icons t)
+
+;; Display Icons using all-the-icons
+(setq doom-modeline-icon (display-graphic-p))
 (setq doom-modeline-major-mode-icon t)
 (setq doom-modeline-major-mode-color-icon t)
+(setq doom-modeline-buffer-state-icon t)
+
+;; Display minor modes
+(setq doom-modeline-minor-modes (featurep 'minions))
+;; Indent information
+(setq doom-modeline-indent-info nil)
+
+;; Set modeline lsp status
+(setq doom-modeline-lsp t)
+;; Set modal state
+(setq doom-modeline-modal-icon t)
+;; Whether display the environment version.
+(setq doom-modeline-env-version t)
+
 (setq doom-modeline-github t)
 (setq doom-modeline-github-interval (* 30 60))
 (setq doom-modeline-env-version t)
@@ -75,6 +92,10 @@
 (setq +doom-modeline-buffer-file-name-style 'relative-from-project
       show-trailing-whitespace t)
 (add-hook! minibuffer-setup (setq-local show-trailing-whitespace nil))
+
+;; Detect project root
+(setq doom-modeline-project-detection 'project)
+
 
 
 ;; -------- Change Banner
