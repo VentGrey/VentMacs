@@ -14,10 +14,12 @@ Para utilizar VentMacs sin pedos (o al menos para no notarlos) necesitarás las 
 dependencias:
 
 * `clang-8`
-* `rust` (`stable` o `nightly`) 1.30 >=
+* `clangd-8`
+* `shellcheck`
+* `rust` (`stable` o `nightly`) 1.40 >=
 * `php-7` >=
 * `docker` -> (Versión estable de los repos de docker)
-* `python3` 3.5 >=
+* `python3` 3.7 >=
 * `pip3`
 * `latex`
 * `Ruby` 2.5 >=
@@ -37,7 +39,7 @@ siguientes características:
 * Autocompletado con `company` + `ivy`.
 * Límite y wrapping en la columna `80` para los programadores de verdad que aún
   respetan el límite de las terminales ANSI.
-* Árbol de directorios `neotree`, podría usar `treemacs` pero que asco.
+* Árbol de directorios `treemacs` con íconos vanilla y soporte de tags nativo.
 * gutter para mostrar las líneas cambiadas en archivos con seguimiento de git.
 * Plantillas de archivos comunes de programación como `c`, `c++`, `java`,
   `rust`, etc.
@@ -59,7 +61,7 @@ siguientes características:
   -Wall -queteimporta`)
 * Integración con `Pipenv`, no más `venv + pip` en vergos de comandos.
 * Soporte para Rust mejorado, ahora Cargo + Racer + RLS funcionan al 100%
-* Soporte de Omnisharp para C# y F#
+* ~~Soporte de Omnisharp para C# y F#~~ (Deprecated, ya no uso C#, me dió mucho asco)
 
 
 # Lenguajes de programación soportados
@@ -96,13 +98,13 @@ Se incluyen algunos temas favoritos como:
 * Modifica los campos `user-full-name` & `user-mail-address` para que algunos
   plugins funcionen mejor (no te llegarán notificaciones de mis configuraciones,
   pues dichos plugins requieren pasos extras como generación de tokens, etc.)
-* La tecla para abrir Neotree es similar a NERDTree en Vim (`F3`).
+* La tecla para abrir Treemacs es similar a NERDTree en Vim (`F3`).
 * Si deseas modificar el banner ve a la sección "Change Banner" y coloca tu
   archivo transparente en tu directorio `.doom.d/`.
   
 
 # Cosas por arreglar (Dame una mano si te gusta la config :D)
-* Los íconos de Neotree no cargan si no se usa cualquier tema que no sea `doom-*`.
+* ~~Los íconos de Neotree no cargan si no se usa cualquier tema que no sea `doom-*`.~~ Parcheado en (259e2fe)
 * El servidor `irony` no funciona por alguna razón
 * Añadir soporte para ligaduras sin instalar versiones parcheadas
 * Incluir shortcuts sencillos de recordar
