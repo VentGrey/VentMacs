@@ -23,7 +23,8 @@
 (setq +ivy-buffer-icons t)
 
 ;; ----- SET THEME
-(load-theme 'doom-dracula t)
+(load-theme 'doom-one t)
+
 
 ;; ----- Tamaño de inicio
   (setq initial-frame-alist
