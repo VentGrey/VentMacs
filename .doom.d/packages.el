@@ -13,3 +13,5 @@
 (package! kaolin-themes)
 ;; Show beautiful parenthesis
 (package! rainbow-delimiters)
+;; Gentoo Ebuild Mode
+(package! ebuild-mode)

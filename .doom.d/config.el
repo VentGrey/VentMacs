@@ -1,126 +1,67 @@
-;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here
-;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
-
-;; Place your private configuration here
-
-(setq-default
- browse-url-browser-function 'browse-url-default-browser
- confirm-kill-emacs 'y-or-n-p
- doom-localleader-key ","
- doom-themes-enable-bold nil
- user-full-name    "VentGrey"
- user-mail-address "omarpurataf@gmail.com")
-(defvar xdg-data (getenv "XDG_DATA_HOME"))
-(defvar xdg-config (getenv "XDG_CONFIG_HOME"))
-
-;; ----- PROPER ENCODING
-(set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-
-;; ----- IVY CONFIGS
-(setq +ivy-buffer-icons t)
-
-;; ----- SET THEME
-(load-theme 'doom-one t)
+;; Place your private configuration here! Remember, you do not need to run 'doom
+;; sync' after modifying this file!
 
 
-;; ----- Tamaño de inicio
-  (setq initial-frame-alist
-        '((width . 110)
-          (height . 65)))
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets.
+(setq user-full-name "Omar Jair Purata Funes"
+      user-mail-address "omarpurataf@gmail.com")
 
-;; ----- FONT CONFIG
-(setq-default
- display-line-numbers-type 'relative
- doom-big-font (font-spec :family "Fira Code" :size 12)
- doom-font (font-spec :family "Fira Code" :size 14)
- doom-variable-pitch-font (font-spec :family "Noto Sans" :size 14)
- frame-title-format
- '((:eval (if (buffer-file-name)
-              (if (projectile-project-p)
-                  (concat "[" (projectile-project-name) "] "
-                          (file-relative-name (buffer-file-name) (projectile-project-root)))
-                (abbreviate-file-name (buffer-file-name)))
-            "%b"))
-   " - Emacs"))
+;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
+;; are the three important ones:
+;;
+;; + `doom-font'
+;; + `doom-variable-pitch-font'
+;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;;   presentations or streaming.
+;;
+;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+;; font string. You generally only need these two:
+(setq doom-font (font-spec :family "JetBrains Mono" :size 14))
 
-(defun window-system-setup (&optional frame)
-  (with-selected-frame (or frame (selected-frame))
-    (when window-system
-      ;; (set-fontset-font t 'han "-unknown-NotoSansCJKSC-normal-r-normal-*-20-*-*-*-m-*-iso10646-1")
-      (set-fontset-font t 'kana (font-spec :family "Fira Code" :size 20))
-      (set-fontset-font t 'cjk-misc (font-spec :family "Fira Code" :size 20))
-      (set-fontset-font t 'han (font-spec :family "Fira Code" :size 20))
-      )))
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+(setq doom-theme 'doom-molokai)
+
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(setq org-directory "~/org/")
+
+;; This determines the style of line numbers in effect. If set to `nil', line
+;; numbers are disabled. For relative line numbers, set this to `relative'.
+(setq display-line-numbers-type t)
 
 
-;; HOOKS
-(add-hook! 'after-make-frame-functions 'window-system-setup)
-
-(window-system-setup (selected-frame))
-
-;; ------- TREEMACS CONFIG
+;; Here are some additional functions/macros that could help you configure Doom:
+;;
+;; - `load!' for loading external *.el files relative to this one
+;; - `use-package' for configuring packages
+;; - `after!' for running code after a package has loaded
+;; - `add-load-path!' for adding directories to the `load-path', relative to
+;;   this file. Emacs searches the `load-path' when you load packages with
+;;   `require' or `use-package'.
+;; - `map!' for binding new keys
+;;
+;; To get information about any of these functions/macros, move the cursor over
+;; the highlighted symbol at press 'K' (non-evil users must press 'C-c g k').
+;; This will open documentation for it, including demos of how they are used.
+;;
+;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
+;; they are implemented.
 (global-set-key [f3] 'treemacs)
-
-;; -------- Modeline CONFIG
-;; Enable icons
-(setq doom-modeline-icon t)
-
-;; Display Icons using all-the-icons
-(setq doom-modeline-icon (display-graphic-p))
-(setq doom-modeline-major-mode-icon t)
-(setq doom-modeline-major-mode-color-icon t)
-(setq doom-modeline-buffer-state-icon t)
-
-;; Display minor modes
-(setq doom-modeline-minor-modes (featurep 'minions))
-;; Indent information
-(setq doom-modeline-indent-info nil)
-
-;; Set modeline lsp status
-(setq doom-modeline-lsp t)
-;; Set modal state
-(setq doom-modeline-modal-icon t)
-;; Whether display the environment version.
-(setq doom-modeline-env-version t)
-
-(setq doom-modeline-github t)
-(setq doom-modeline-github-interval (* 30 60))
-(setq doom-modeline-env-version t)
-
-(setq +doom-modeline-buffer-file-name-style 'relative-from-project
-      show-trailing-whitespace t)
-(add-hook! minibuffer-setup (setq-local show-trailing-whitespace nil))
-
-;; Detect project root
-(setq doom-modeline-project-detection 'project)
-
-
 
 ;; -------- Change Banner
 (setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
-
-
-;; --------- Treemacs visuals
-;; Keep vanilla icons, I don't like doom ones
-(setq doom-themes-treemacs-theme nil)
-
 
 ;; ------ PYTHON CONFIG
 (setq python-shell-interpreter "python3"
     flycheck-python-pycompile-executable "python3")
 
-(use-package pipenv
-  :hook (python-mode . pipenv-mode)
-  :init
-  (setq
-   pipenv-projectile-after-switch-function
-   #'pipenv-projectile-after-switch-extended))
 
-;; ------- RUST CONFIGURATIONS (AGAIN PTM)
- (with-eval-after-load 'rust-mode
+(with-eval-after-load 'rust-mode
 (setq flycheck-rust-cargo-executable "/home/omar/.cargo/bin/")
 (setq flycheck-rust-executable "/home/omar/.cargo/bin/rustc")
 (setq +rust-src-dir "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"))
@@ -139,73 +80,6 @@
   (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
   :hook
   (rust-mode . lsp-rust-enable))
-
-;; ------ LSP Configuration
-
-(def-package! lsp-ui
-  :after lsp-mode
-  :hook (lsp-mode . lsp-ui-mode)
-  :config
-  (setq
-   lsp-ui-doc-max-height 8
-   lsp-ui-doc-max-width 35
-   lsp-ui-sideline-ignore-duplicate t))
-
-(def-package! company-lsp
-  :after lsp-mode
-  :config
-  (setq company-lsp-enable-recompletion t)
-  (set-company-backend! 'lsp-mode '(company-lsp)))
-
-(require 'lsp-clients)
-(add-hook! 'rust-mode-hook 'lsp)
-
-(use-package lsp-mode
-  :config
-  (add-hook 'c++-mode-hook #' lsp)
-t (add-hook 'c-mode-hook #' lsp)
-  (setq lsp-clients-clangd-executable "/usr/bin/clangd-8")
-
-  (add-hook 'python-mode-hook #' lsp)
-  (add-hook 'rust-mode-hook #' lsp)
-  ;: C++ Config
-)
-
-(use-package lsp-ui
-  :requires lsp-mode flycheck
-  :config
-
-  (setq lsp-ui-doc-enable t
-        lsp-ui-doc-use-childframe t
-        lsp-ui-doc-position 'top
-        lsp-ui-doc-include-signature t
-        lsp-ui-sideline-enable nil
-        lsp-ui-flycheck-enable t
-        lsp-ui-flycheck-list-position 'right
-        lsp-ui-flycheck-live-reporting t
-        lsp-ui-peek-enable t
-        lsp-ui-peek-list-width 60
-        lsp-ui-peek-peek-height 25)
-
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
-(use-package company
-  :config
-  (setq company-idle-delay 0.3)
-
-  (global-company-mode 1)
-
-  (global-set-key (kbd "C-<tab>") 'company-complete))
-
-(use-package company-lsp
-  :requires company
-  :config
-  (push 'company-lsp company-backends)
-
-   ;; Disable client-side cache because the LSP server does a better job.
-  (setq company-transformers nil
-        company-lsp-async t
-        company-lsp-cache-candidates nil))
-
 ;; ESHELL
 (add-hook 'eshell-mode-hook #'hide-mode-line-mode)
 
