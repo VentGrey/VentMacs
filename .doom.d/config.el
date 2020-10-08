@@ -24,7 +24,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-molokai)
+(setq doom-theme 'doom-monokai-pro)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -51,42 +51,29 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
+;;
+;;
+;; === CONFIGURACIÓN PROPIA ===
+
+;; Usar F3 para abrir Treemacs igual que NERDTree en Vim
 (global-set-key [f3] 'treemacs)
 
-;; -------- Change Banner
+;; -------- Poner paréntesis de colores bonitos
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
+;; -------- Ponerle el banner más perrón de la historia a Doom Emacs
 (setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
 
-;; ------ PYTHON CONFIG
-(setq python-shell-interpreter "python3"
-    flycheck-python-pycompile-executable "python3")
-
-
-(with-eval-after-load 'rust-mode
-(setq flycheck-rust-cargo-executable "/home/omar/.cargo/bin/")
-(setq flycheck-rust-executable "/home/omar/.cargo/bin/rustc")
-(setq +rust-src-dir "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"))
-
-;; ------- Rust VERY BASIC configurations
+;; ------- Llamar el CargoMode cuando abramos un archivo de Rust
 (add-hook! 'rust-mode-hook 'cargo-minor-mode)
 
-(def-package! rust-mode
-  :mode "\\.rs$"
-  :config
-  (flycheck-mode))
-
-(def-package! lsp-rust
-  :after (lsp-mode lsp-ui rust-mode)
-  :config
-  (setq lsp-rust-rls-command '("rustup" "run" "nightly" "rls"))
-  :hook
-  (rust-mode . lsp-rust-enable))
-;; ESHELL
+;; Una terminal bien perrona que no estorbe pls
 (add-hook 'eshell-mode-hook #'hide-mode-line-mode)
 
-;; IVY
+;; Ivy con iconitos por si la cagamos
 (setq +ivy-buffer-icons t)
 
-;; IVY YASNIPPET
+;; IVY YASNIPPET que alch no se que hace :V
 (after! ivy
 (use-package! ivy-yasnippet
   :commands (ivy-yasnippet)
@@ -96,6 +83,68 @@
      (:prefix "s"
        :desc "Ivy-yasnippet" :n "y" #'ivy-yasnippet)))))
 
-;; LaTeX
+
+;; ===== CONFIGURACIONES DE LOS LENGUAJES =====
+
+;; ===== LATEX
+;; LaTeX para los machos que son realmente machos y no usan Word o PowerPoint
 (setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
 (setq-hook! 'org-mode-hook +spellcheck-immediately nil)
+
+;; ===== JULIA
+;; El LSP de Julia que jala en Emacs cuando quiere
+(add-hook 'julia-mode-local-vars-hook #'lsp!)
+(add-hook 'ess-julia-mode-hook #'lsp-mode)
+
+(use-package lsp-julia
+  :config
+  (setq lsp-julia-default-environment "~/.julia/environments/v1.4"))
+
+;; ===== PYTHON
+;; ------ Configuración para el lenguaje que menos tolero
+(setq python-shell-interpreter "python3"
+    flycheck-python-pycompile-executable "python3")
+
+;; ===== RUST
+;; SI ESTÁS USANDO ESTO, CAMBIA LAS RUTAS A TU NOMBRE DE
+;; USUARIO, NO SEAS GIL
+(with-eval-after-load 'rust-mode
+(setq flycheck-rust-cargo-executable "/home/omar/.cargo/bin/")
+(setq flycheck-rust-executable "/home/omar/.cargo/bin/rustc")
+(setq +rust-src-dir "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src"))
+
+;; ===== C/C++
+(add-hook 'c-mode-local-vars-hook #'lsp!)
+(add-hook 'c++-mode-local-vars-hook #'lsp!)
+
+
+;; ===== TUNEAME LA MODELINE =====
+;; --- Poner nombres largos o pequeños dependiendo de la ruta
+(setq doom-modeline-buffer-file-name-style 'auto)
+
+;; --- Poner un iconito bien perrón dependiendo de lo que estemos editando
+(setq doom-modeline-major-mode-icon t)
+
+;; --- Colores para que la modeline se vea shido
+(setq doom-modeline-major-mode-color-icon t)
+
+;; --- Mostrar los modos menores en la modeline
+(setq doom-modeline-minor-modes nil)
+
+;; --- Mostrar un contador de palabras en el modeline
+(setq doom-modeline-enable-word-count nil)
+
+;; --- Mostrar la información de las sangrías
+(setq doom-modeline-indent-info t)
+
+;; --- Mostrar el ícono de los modos
+(setq doom-modeline-modal-icon t)
+
+;; --- Mostrar las notificaciones de gnus
+(setq doom-modeline-gnus t)
+
+;; --- Temporizador para actualizar los gnus
+(setq doom-modeline-gnus-timer 2)
+
+;; --- Mostrar la versión del entorno en el que trabajamos
+(setq doom-modeline-env-version t)
