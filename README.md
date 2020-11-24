@@ -2,84 +2,96 @@
 
 ![vent-macs](/.doom.d/title.png)
 
-Es solo una micro-distribución (por no decir dotfiles) para doom emacs.
+Es solo una micro-distribución (por no decir `dotfiles`) para Doom Emacs.
 
-Es personal así que la estaré manteniendo de acuerdo a mis necesidades, nada
-especial, de igual forma si deseas instalar mis archivos de configuración
-te dejo las instrucciones.
+Este proyecto tiene un enfoque personal así que estará siendo manteniendo de
+acuerdo a mis necesidades, nada especial, de igual forma si deseas instalar mis
+archivos de configuración te dejo las instrucciones.
+
+## Cómo instalar
+
+Si ya posees Doom Emacs solo realiza un respaldo de tu carpeta `~/.doom.d/` y
+arrastra los archivos de la carpeta `.doom.d/` que se encuentra en este
+repositorio. Simple, sencillo, fácil y rápido.
+
+> Te recomiendo borrar los archivos de title.png y el archivo .svg del logo si
+> tienes pensado cambiar el nombre o la imágen del editor
+
+### Comando copy-pastable para los flojos
+
+``` sh
+# Clonar el repositorio de git
+$ git clone https://github.com/VentGrey/VentMacs
+# Respaldar las configuraciones anteriores (si existen)
+$ mv ~/.doom.d .doom.d.old
+# Instalar VentMacs
+$ cd VentMacs && mv .doom.d/ ~/
+```
+
+
+Mi configuración de emacs (si reunes los programas instalados) posee las
+siguientes características:
+
+# Herramientas instaladas
+
+* ivy -> (Autocompletado ligero y que si jala a la primera)
+* emoji + unicode -> (Por si te gusta hablar como idiota de vez en cuando)
+* fill-column -> (Un indicador para cuando te pases de la línea 80. Sirve
+para detectar malos programadores).
+* hl-todo -> (Marcar en colores todos preciosos las palabras qleras de TODO, 
+FIXME y esas mamadas que ponemos en el código que no jala).
+* indent-guides -> (puntitos pa que no te pierdas programando)
+* ligatures -> (al chile no jala en linux, pero pos ahí está)
+* modeline -> (una barrita perrona pa que se vea chido el emacs)
+* treemacs -> (como NerdTree pero bien hecho)
+
+# Otras cosas interesantes
+* templates de código
+* snippets
+* integración con `git` y GitHub
+* Terminal eshell pa que corras todo desde emacs y no andes abriendo terminales a lo wey
+* revisión de ortografía para que tu texto no esté mal escroto
+* make para compilar todo acá chido
+* rgb para hacer strings de colores y que emacs tenga más fps
+
+
+# Lenguajes de programación soportados
+
+* C - Lenguaje que asusta programadores de JS por que tiene unas madres llamadas "apuntadores"
+* C++ - C que tarda un chingo en compilar
+* Lenguajes de configuración o datos comunes (CSV, TOML, etc)
+* Elisp - (((al chile no entiendo (este (lenguaje (extraño))))))
+* ess - Estadística con emacs, no se que haga pero pos tiene R
+* json - { description: "está mejor que xml, eso es cierto" }
+* JavaScript - No tengo bromas para esto, pero apuesto a que ya hay un framework que lo hace.
+* Julia - Python morado y rápido
+* LaTeX - Word, Excel y PowerPoint pero para hipsters
+* MarkDown - Escribe READMES que nadie va a leer :D
+* org - Markdown para los camaradas que usan Emacs
+* php - No está tan feo...bueno si, pero no hay de otra.
+* python - Se tiene que usar...aunque esté horrible
+* Rust - JAJAJAJAJAJAJAJAJAJA no planeas usar esto...¿o si?
+* sh - Bash que le tiene miedo a la palabra `function`
+* web - Eso que todo mundo hace hoy en día pero que les sale bien culero
+* yaml - Perl pero de marcado
 
 # DEPENDENCIAS
 
 Para utilizar VentMacs sin pedos (o al menos para no notarlos) necesitarás las siguientes
 dependencias:
 
-* `clang-8`
-* `clangd-8`
+* `clang-11`
+* `clangd-11`
 * `shellcheck`
 * `rust` (`stable` o `nightly`) 1.40 >=
-* `php-7` >=
-* `docker` -> (Versión estable de los repos de docker)
-* `python3` 3.7 >=
+* `php-7.2` >=
+* `python3` 3.8 >=
 * `pip3`
 * `latex`
-* `Ruby` 2.5 >=
-
-## Cómo instalar
-
-Si ya posees doom emacs solo realiza un respaldo de tu carpeta `.doom.d` y
-arrastra los archivos de la carpeta `.doom.d` que se encuentra en este
-repositorio. Simple, sencillo, fácil y rápido.
-
-> Te recomiendo borrar los archivos de title.png y el archivo .svg del logo si
-> tienes pensado cambiar el nombre o la imágen del editor
-
-Mi configuración de emacs (si reunes los programas instalados) posee las
-siguientes características:
-
-* Autocompletado con `company` + `ivy`.
-* Límite y wrapping en la columna `80` para los programadores de verdad que aún
-  respetan el límite de las terminales ANSI.
-* Árbol de directorios `treemacs` con íconos vanilla y soporte de tags nativo.
-* gutter para mostrar las líneas cambiadas en archivos con seguimiento de git.
-* Plantillas de archivos comunes de programación como `c`, `c++`, `java`,
-  `rust`, etc.
-* Dobleces de código para que tus ojos no vean esas 300 líneas de una sola
-  función escrita bajo las influencias del café y probablemente 2 latas de
-  bebidas energéticas.
-* Snippets para no escribir mucho y solo picarle al `TAB`.
-* Soporte para control de versiones como `git` o `mercurial`
-* Soporte de directorios, indents y dos terminales como eshell y vterm.
-* Soporte para editorconfig.
-* flycheck y flyspell para el chequeo de sintáxis y escritura.
-* lsp por si alguien utiliza language servers
-* Resaltado de fuente para las palabras ultra-necesarias en el desarrollo como:
-  "TODO", "FIXME", "NOTE", "DEPRECATED", "HACK" y "REVIEW"
-* Emulación de "pestañas" gracias a centaur emacs.
-* Integración con docker para no estar con los contenedores castrosos en la
-  terminal.
-* Soporte para makefiles (Si, para huevones que no queremos usar `gcc -O2
-  -Wall -queteimporta`)
-* Integración con `Pipenv`, no más `venv + pip` en vergos de comandos.
-* Soporte para Rust mejorado, ahora Cargo + Racer + RLS funcionan al 100%
-* ~~Soporte de Omnisharp para C# y F#~~ (Deprecated, ya no uso C#, me dió mucho asco)
-
-
-# Lenguajes de programación soportados
-
-* Assembly
-* C/C++/Objective-C
-* Formatos comunes de configuración / datos
-* Emacs-lisp (¿cómo planeas editar la config sin eso?)
-* JavaScript (Wacala, pero es necesario)
-* LaTeX el mejor sistema de composición de textos existente
-* Markdown, no puedes no amarlo.
-* ORG MODE
-* PHP (Si, sigue vivo)
-* Python (Wacala x2, pero es necesario x2)
-* Rust, si, ni tú lo vas a usar, lo se.
-* Ruby el python sobrevalorado...espera ¿ya existe eso?
-* sh (cosas de shell)
-* web (ya el nombre explica todo)
+* `pyls`
+* `rls (Rust Language Server)`
+* `julia`
+* `irony-server`
 
 # Cositas Extra
 Se incluyen algunos temas favoritos como:
@@ -104,7 +116,5 @@ Se incluyen algunos temas favoritos como:
   
 
 # Cosas por arreglar (Dame una mano si te gusta la config :D)
-* ~~Los íconos de Neotree no cargan si no se usa cualquier tema que no sea `doom-*`.~~ Parcheado en (259e2fe)
-* El servidor `irony` no funciona por alguna razón
-* Añadir soporte para ligaduras sin instalar versiones parcheadas
-* Incluir shortcuts sencillos de recordar
+
+* Nada por el momento
