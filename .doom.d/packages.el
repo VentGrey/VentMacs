@@ -13,3 +13,5 @@
 ;; Show beautiful parenthesis
 (package! rainbow-delimiters)
 (package! lsp-julia)
+;; Company Extra
+(package! company-box)
