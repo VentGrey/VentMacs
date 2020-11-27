@@ -55,6 +55,20 @@
 ;;
 ;; === CONFIGURACIÓN PROPIA ===
 
+;; ----- DOOM DASHBOARD CONFIGS -----
+;; Configuración del dashboard de Doom
+
+; Nombre en la barra de título del dasboard
+(setq +doom-dashboard-name "*VentMacs*")
+
+; Logo personalizado localizado en .doom.d
+(setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
+
+;; ----- CONFIGURACIÓN DE LAS PESTAÑAS -----
+(setq centaur-tabs-style "wave")
+(setq centaur-tabs-set-bar 'over)
+
+;; ----- CONFIGURACIÓN DE TREEMACS
 ;; Usar F3 para abrir Treemacs igual que NERDTree en Vim
 (global-set-key [f3] 'treemacs)
 
@@ -69,9 +83,6 @@
 
 ;; -------- Poner paréntesis de colores bonitos
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-
-;; -------- Ponerle el banner más perrón de la historia a Doom Emacs
-(setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
 
 ;; ------- Llamar el CargoMode cuando abramos un archivo de Rust
 (add-hook! 'rust-mode-hook 'cargo-minor-mode)
@@ -189,10 +200,7 @@
 ;; El LSP de Julia que jala en Emacs cuando quiere
 (add-hook 'julia-mode-local-vars-hook #'lsp!)
 (add-hook 'ess-julia-mode-hook #'lsp-mode)
-
-(use-package lsp-julia
-  :config
-  (setq lsp-julia-default-environment "~/.julia/environments/v1.4"))
+(setq lsp-julia-default-environment "~/.julia/environments/v1.5")
 
 ;; ===== PYTHON
 ;; ------ Configuración para el lenguaje que menos tolero
@@ -223,6 +231,13 @@
 ;; ===== C/C++
 (add-hook 'c-mode-local-vars-hook #'lsp!)
 (add-hook 'c++-mode-local-vars-hook #'lsp!)
+; Configuraciones de clangd
+(setq lsp-clients-clangd-args '("-j=8"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
 ;; ===== JAVASCRIPT
 (after! web-mode
@@ -287,4 +302,12 @@
 ;; --- Mostrar la versión del entorno en el que trabajamos
 (setq doom-modeline-env-version t)
 
-;; --- Iconos de Company
+;; --- KEYBINDS perrones (favor de no mover :3)
+(define-key key-translation-map (kbd "W!") (kbd "w!"))
+(define-key key-translation-map (kbd "Q!") (kbd "q!"))
+(define-key key-translation-map (kbd "Qall!") (kbd "qall!"))
+(define-key key-translation-map (kbd "Wq!") (kbd "wq"))
+(define-key key-translation-map (kbd "Wa") (kbd "wa"))
+(define-key key-translation-map (kbd "wQ") (kbd "wq"))
+(define-key key-translation-map (kbd "W") (kbd "w"))
+(define-key key-translation-map (kbd "Q") (kbd "q"))
