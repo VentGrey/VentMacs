@@ -68,6 +68,15 @@
 ; Logo personalizado localizado en .doom.d
 (setq +doom-dashboard-banner-file (expand-file-name "banner.png" doom-private-dir))
 
+; Footer personalizado
+(add-hook! '+doom-dashboard-functions :append
+           (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Based on Doom Emacs!  ")))
+
+; Entradas del menu
+(assoc-delete-all "Jump to bookmark" +doom-dashboard-menu-sections)
+(assoc-delete-all "Open org-agenda" +doom-dashboard-menu-sections)
+
+
 ;; ----- CONFIGURACIÓN DE LAS PESTAÑAS -----
 (setq centaur-tabs-style "chamfer")
 (setq centaur-tabs-set-bar 'over)
@@ -77,6 +86,8 @@
                             "Escucha, yo no te agrado y ten seguro que tú no me agradas a mi!"
                             "¿Por qué no tomas una foto? Duran más..."
                             "Los bugs no se arreglarán solos ¿lo sabes?"
+                            "¿Estas programando? ¿Por qué me cierras? :("
+                            "Acabo de ver un bug ahí arriba"
                             ))
 
 ;; ----- CONFIGURACIÓN DE TREEMACS
@@ -84,6 +95,9 @@
 (global-set-key [f3] 'treemacs)
 ;; Mostrar íconos del LSP
 (lsp-treemacs-sync-mode 1)
+;; Personalización variada de emacs
+(setq treemacs-indentation-string (propertize " ⫶ " 'face 'font-lock-comment-face)
+      treemacs-indentation 1)
 
 ;; Activar meson para los proyectos que lo usen
 (add-hook 'meson-mode-hook 'company-mode)
@@ -168,14 +182,6 @@
 (setq-hook! 'LaTeX-mode-hook +spellcheck-immediately nil)
 (setq-hook! 'org-mode-hook +spellcheck-immediately nil)
 
-;; ===== JULIA
-;; El LSP de Julia que jala en Emacs cuando quiere
-(add-hook 'julia-mode-local-vars-hook #'lsp!)
-(add-hook 'ess-julia-mode-hook #'lsp-mode)
-(use-package lsp-julia
-  :config
-  (setq lsp-julia-default-environment "~/.julia/environments/v1.5"))
-
 ;; ===== PYTHON
 ;; ------ Configuración para el lenguaje que menos tolero
 (after! python
@@ -197,83 +203,37 @@
 (add-hook! 'c-mode-hook 'lsp)
 (add-hook! 'cpp-mode-hook 'lsp)
 
-; Configuraciones de clangd
-(setq lsp-clients-clangd-args '("-j=8"
-                                "--background-index"
-                                "--clang-tidy"
-                                "--completion-style=detailed"
-                                "--header-insertion=never"))
-(after! lsp-clangd (set-lsp-priority! 'clangd 2))
-; Estilo del código del kernel linux. Así se programa C, así se debe de programar siempre
+; Estilo del código del kernel linux. Así se programa C,
+; así se debe de programar siempre
 (add-hook! 'c-mode-common-hook
           '(lambda ()
              (c-set-style "linux")))
+; Configuración de CCLS
+(after! ccls
+  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t))))
 
-;; ===== SHELL
-(after! sh-script
-  (set-company-backend! 'sh-mode
-    '(company-shell :with company-yasnippet)))
 
-;; ===== TERMINAL
-(set-formatter! 'shfmt "shfmt -i=2")
-
-(after! eshell
-  ;; eshell-mode imenu index
-  (add-hook! 'eshell-mode-hook (setq-local imenu-generic-expression '(("Prompt" " λ \\(.*\\)" 1))))
-
-  (defun eshell/l (&rest args) (eshell/ls "-l" args))
-  (defun eshell/e (file) (find-file file))
-  (defun eshell/md (dir) (eshell/mkdir dir) (eshell/cd dir))
-  (defun eshell/ft (&optional arg) (treemacs arg))
-
-  (defun eshell/up (&optional pattern)
-    (let ((p (locate-dominating-file
-              (f-parent default-directory)
-              (lambda (p)
-                (if pattern
-                    (string-match-p pattern (f-base p))
-                  t)))
-             ))
-      (eshell/pushd p)))
-  )
-
-(after! term
-  ;; term-mode imenu index
-  (add-hook! 'term-mode-hook (setq-local imenu-generic-expression '(("Prompt" "➜\\(.*\\)" 1)))))
+;; ===== Web
+;; Sangrías para los diferentes lenguajes web
+(setq web-mode-markup-indent-offset 2
+      web-mode-css-indent-offset 4
+      web-mode-code-indent-offset 4
+      web-mode-style-padding 4
+      web-mode-script-padding 4
+      web-mode-block-padding 0)
 
 ;; ===== TUNEAME LA MODELINE =====
-;; --- Poner nombres largos o pequeños dependiendo de la ruta
-(setq! doom-modeline-buffer-file-name-style 'auto)
-
-;; --- Detectar el root de los proyectos
-(setq! doom-modeline-project-detection 'projectile)
-
-;; --- Poner un iconito bien perrón dependiendo de lo que estemos editando
-(setq! doom-modeline-major-mode-icon t)
-
-;; --- Colores para que la modeline se vea shido
-(setq! doom-modeline-major-mode-color-icon t)
-
-;; --- Modificaciones de los íconos
-(setq! doom-modeline-buffer-modification-icon t)
-
-;; --- Mostrar los modos menores en la modeline
-(setq! doom-modeline-minor-modes nil)
-
-;; --- Mostrar un contador de palabras en el modeline
-(setq! doom-modeline-enable-word-count nil)
-
-;; --- Mostrar la información de las sangrías
-(setq! doom-modeline-indent-info t)
-
-;; --- Mostrar el ícono de los modos
-(setq! doom-modeline-modal-icon t)
-
-;; --- Mostrar las notificaciones de gnus
-(setq! doom-modeline-gnus t)
-
-;; --- Temporizador para actualizar los gnus
-(setq! doom-modeline-gnus-timer 2)
-
-;; --- Mostrar la versión del entorno en el que trabajamos
-(setq! doom-modeline-env-version t)
+(setq doom-modeline-buffer-file-name-style 'auto
+      doom-modeline-icon (display-graphic-p)
+      doom-modeline-major-mode-icon t
+      doom-modeline-major-mode-color-icon t
+      doom-modeline-buffer-modification-icon t
+      doom-modeline-minor-modes nil
+      doom-modeline-enable-word-count nil
+      doom-modeline-indent-info t
+      doom-modeline-modal-icon t
+      doom-modeline-gnus t
+      doom-modeline-gnus-timer 2
+      doom-modeline-env-version t
+      doom-modeline-env-load-string ""
+       )
