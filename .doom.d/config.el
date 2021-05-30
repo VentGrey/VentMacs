@@ -28,7 +28,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-monokai-pro)
+(setq doom-theme 'doom-one)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -58,6 +58,38 @@
 ;;
 ;; === CONFIGURACIÓN PROPIA ===
 
+
+;; ----- EMACS CORE CONFIGS & HACKS -----
+;; Configuraciones de emacs como tal y algunos hacks para
+;; mejorar la experiencia del usuario
+
+
+
+;; ==== Configuración de tarjeta gráfica ====
+;; Las tarjetas gráficas con VSYNC generan pedos
+;; esto debería arreglar el acartonamiento de emacs
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
+
+;; == HACK: Scrolling mejorado ==
+;; Manejar archivos HTML, JSON o muy grandes en general resulta en un scroll
+;; impreciso de emacs, esto podría arreglarlo de cierta forma.
+
+;; redibujar inmediatamente al hacer scrolling.
+(setq jit-lock-defer-time 0
+      fast-but-imprecise-scrolling t
+      ;; No acelerar el scroll con el mouse
+      mouse-wheel-scroll-amount '(2 ((shift) . 1))
+      mouse-wheel-progressive-speed nil
+      ;; Margenes y límites del scrolling un poco mejores que los default
+      scroll-margin 0
+      scroll-conservatively 101
+      scroll-preserve-screen-position t
+      auto-window-vscroll nil)
+
+;; ---- CONFIGURACIONES ESPECIALES DE ARCHIVOS -----
+;; Insertar espacios en lugar de tabulaciones. La definición está por algo
+(setq-default indent-tabs-mode nil)
+
 ;; ----- DOOM DASHBOARD CONFIGS -----
 ;; Configuración del dashboard de Doom
 
@@ -70,7 +102,7 @@
 
 ; Footer personalizado
 (add-hook! '+doom-dashboard-functions :append
-           (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Based on Doom Emacs!  ")))
+           (insert "\n" (+doom-dashboard--center +doom-dashboard--width "Based on Doom Emacs!  ")))
 
 ; Entradas del menu
 (assoc-delete-all "Jump to bookmark" +doom-dashboard-menu-sections)
@@ -78,17 +110,8 @@
 
 
 ;; ----- CONFIGURACIÓN DE LAS PESTAÑAS -----
-(setq centaur-tabs-style "chamfer")
-(setq centaur-tabs-set-bar 'over)
-
-;; ----- Frases propias al salir de Emacs
-(setq +doom-quit-messages '(;; Frases varias, algunas robadas, otras solo por hacerse el payaso.
-                            "Escucha, yo no te agrado y ten seguro que tú no me agradas a mi!"
-                            "¿Por qué no tomas una foto? Duran más..."
-                            "Los bugs no se arreglarán solos ¿lo sabes?"
-                            "¿Estas programando? ¿Por qué me cierras? :("
-                            "Acabo de ver un bug ahí arriba"
-                            ))
+(setq! centaur-tabs-style "chamfer")
+(setq! centaur-tabs-set-bar 'over)
 
 ;; ----- CONFIGURACIÓN DE TREEMACS
 ;; Usar F3 para abrir Treemacs igual que NERDTree en Vim
@@ -100,10 +123,11 @@
       treemacs-indentation 1)
 
 ;; Activar meson para los proyectos que lo usen
-(add-hook 'meson-mode-hook 'company-mode)
+(add-hook! 'meson-mode-hook 'company-mode)
 
 ;; Dejar las gúias de sangría visibles para no cagarla con los espacios
 (use-package! highlight-indent-guides
+  :defer t
   :init
   (setq highlight-indent-guides-method 'character)
   :config
@@ -117,9 +141,6 @@
 ;; ------- Llamar el CargoMode cuando abramos un archivo de Rust
 (add-hook! 'rust-mode-hook 'cargo-minor-mode)
 
-;; Una terminal bien perrona que no estorbe pls
-(add-hook 'eshell-mode-hook #'hide-mode-line-mode)
-
 ;; ===== Configuración de IVY
 
 ;; Ivy con íconos fresas
@@ -129,45 +150,6 @@
 
 ;; Activar el wrapping de forma GLOBAL, así el código se escribe bien y bonito.
 (+global-word-wrap-mode +1)
-
-
-
-;; Revisar archivos minificados
-(set-popup-rules! '(("^\\*helpful" :size 0.35)
-                    ("^\\*Ibuffer\\*$" :size 0.35)
-                    ("^\\*info.*" :size 80 :side right)
-                    ("^\\*Man.*" :size 80 :side right)
-                    ("^\\*Customize" :actions display-buffer)
-                    ("^\\*edit-indirect" :size 0.6)
-                    ("^\\*YASnippet Tables\\*$" :size 0.35)
-                    ("^\\*grep\\*$" :size 0.35)
-                    ("^\\*pytest\\*" :size 0.35)
-                    ("^\\*Anaconda\\*$" :size 0.35)
-                    ("\\*.*server log\\*$" :side top :size 0.20 :select nil)
-                    ((lambda (buf _) (with-current-buffer buf (eq major-mode 'forge-topic-mode))) :size 0.35)
-                    ))
-
-;; ===== Configuración global del LSP (Language Server Protocol)
-
-(after! lsp-mode
-  (setq lsp-log-io nil)
-  (dolist (dir '("[/\\\\]\\.ccls-cache$"
-                 "[/\\\\]\\.mypy_cache$"
-                 "[/\\\\]\\.pytest_cache$"
-                 "[/\\\\]\\.cache$"
-                 "[/\\\\]\\.clwb$"
-                 "[/\\\\]_build$"
-                 "[/\\\\]__pycache__$"
-                 "[/\\\\]bazel-bin$"
-                 "[/\\\\]bazel-code$"
-                 "[/\\\\]bazel-genfiles$"
-                 "[/\\\\]bazel-out$"
-                 "[/\\\\]bazel-testlogs$"
-                 "[/\\\\]third_party$"
-                 "[/\\\\]third-party$"
-                 ))
-    (push dir lsp-file-watch-ignored-directories))
-  )
 
 ;; ===== CONFIGURACIONES DE ORGMODE =====
 (after! org
@@ -186,7 +168,7 @@
 ;; ------ Configuración para el lenguaje que menos tolero
 (after! python
   (setq python-indent-offset 4
-        python-shell-interpreter "python3"
+        python-shell-interpreter "/usr/bin/python3"
         flycheck-python-pylint-executable "pylint"
         flycheck-python-flake8-executable "flake8"))
 
@@ -205,22 +187,34 @@
 
 ; Estilo del código del kernel linux. Así se programa C,
 ; así se debe de programar siempre
-(add-hook! 'c-mode-common-hook
-          '(lambda ()
-             (c-set-style "linux")))
+(add-hook! cc-mode
+  (setq! c-default-style "linux"))
+
 ; Configuración de CCLS
 (after! ccls
-  (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t))))
-
+  (setq ccls-initialization-options '(
+                                      :index (:comments 2)
+                                      :completion (:detailedLabel t))))
 
 ;; ===== Web
 ;; Sangrías para los diferentes lenguajes web
-(setq web-mode-markup-indent-offset 2
+
+(after! web
+  (setq web-mode-markup-indent-offset 2
       web-mode-css-indent-offset 4
       web-mode-code-indent-offset 4
       web-mode-style-padding 4
       web-mode-script-padding 4
-      web-mode-block-padding 0)
+      web-mode-block-padding 0))
+
+
+;; Configuraciones para CSS y SASS
+(use-package! css-mode
+  :init (setq css-indent-offset 4))
+
+;; Usar el `less-css-mde' que está presente desde Emacs 26
+(unless (fboundp 'less-css-mode)
+  (use-package! less-css-mode))
 
 ;; ===== TUNEAME LA MODELINE =====
 (setq doom-modeline-buffer-file-name-style 'auto
@@ -232,8 +226,6 @@
       doom-modeline-enable-word-count nil
       doom-modeline-indent-info t
       doom-modeline-modal-icon t
-      doom-modeline-gnus t
-      doom-modeline-gnus-timer 2
       doom-modeline-env-version t
       doom-modeline-env-load-string ""
        )

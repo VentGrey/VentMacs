@@ -15,3 +15,10 @@
 (package! lsp-treemacs)
 ;; Meson mode cause emacs is caca
 (package! meson-mode)
+
+;; ----- Deshabilitar paquetes que no utilizo en emacs para ahorrar disco ----
+(package! feedmail :disable t)
+(package! ruby-mode :disable t)
+(package! soap-client :disable t)
+(package! tetris :disable t)
+(package! timeclock :disable t)
