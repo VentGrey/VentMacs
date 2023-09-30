@@ -1,0 +1,90 @@
+#+TITLE: Manual de usuario de VentMacs
+#+AUTHOR: VentGrey
+#+LANGUAGE: es
+
+* Introducción
+
+VentMacs es una distribución de Emacs que apunta a mejorar la experiencia de Emacs de una forma sencilla. No altera mucho los ajustes por defecto ni viene con toneladas de /features/ que debas aprender antes de poderlo usar. Si eres un usuario de Vim o llegaste a utilizar cosas como /Vim-Bootstrap/ en el pasado, te lo pasarás en grande aquí.
+
+Esta configuración está inspirada en otras configuraciones de Emacs y editores de texto modernos como:
+
+- [[https://github.com/seagle0128/.emacs.d/][Centaur Emacs]]
+- [[https://github.com/doomemacs/doomemacs][Doom Emacs]]
+- [[https://www.sublimetext.com/][Sublime Text]]
+- [[https://vscodium.com/][VSCode / Visual Studio Code / Codium]]
+- [[https://github.com/atom/atom][Atom]]
+- [[https://pulsar-edit.dev/][Pulsar]]
+
+VentMacs está diseñado solo para sistemas tipo UNIX, especialmente Linux. Por lo que tu experiencia podría variar si estás en otro sistema como un *BSD o MacOS.
+
+**NO funciona, ni funcionará en Windows**.
+
+Este documento describe la configuración y los componentes de VentMacs, una configuración personalizada de Emacs. Se proporciona una visión detallada de los scripts, la configuración principal y los módulos utilizados.
+
+** El script build-emacs.sh
+
+Este script automatiza la descarga, configuración, compilación e instalación de Emacs con ciertas banderas y configuraciones personalizadas. A continuación, se describe su funcionamiento:
+
+- Comprueba los argumentos de la línea de comandos.
+- Obtiene la URL de la última versión de Emacs.
+- Descarga la última versión de Emacs.
+- Extrae el archivo descargado.
+- Entra en el directorio extraído.
+- Configura Emacs con ciertas banderas y configuraciones.
+- Compila Emacs.
+- Muestra un mensaje de éxito al finalizar.
+
+Para usar el script, simplemente ejecuta:
+
+#+BEGIN_SRC sh
+./build-emacs.sh
+#+END_SRC
+
+Para obtener ayuda sobre las opciones disponibles, usa:
+
+#+BEGIN_SRC sh
+./build-emacs.sh --help
+#+END_SRC
+
+* Configuración principal de Emacs
+
+La configuración principal de VentMacs se distribuye en varios archivos que definen el comportamiento básico de Emacs y los componentes clave.
+
+** Early Init
+
+El archivo =early-init.el= define las configuraciones que se deben cargar antes de que el proceso de inicialización de Emacs inicie propiamente. Esto es útil para definir comportamientos que afectan el proceso de inicio, como la desactivación de ciertos módulos o la definición de variables clave.
+
+** Init
+** Editor
+** Keybindings
+** UI
+
+* Módulos
+** C
+** Codeium
+** Company
+** Archivos de Configuración
+** Dashboard
+** Docker
+** Eglot
+** Evil
+** Flycheck
+** Go
+** Golden Ratio
+** Hugo
+** Magit
+** Makefile
+** Markdown
+** Modeline
+** Nerd Icons
+** Org
+** Projectile
+** REST API
+** Tabs
+** Temas
+** Treemacs
+** TypeScript
+** Vertico
+** Web
+** Which Key
+** Yasnippet

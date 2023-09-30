@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: dot
+# key: dot
+# uuid: dot
+# --
+#+begin_src dot :file ${1:file}.${2:svg} :results file graphics
+`%`$0
+#+end_src

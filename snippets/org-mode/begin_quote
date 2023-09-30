@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: #+begin_quote block
+# key: <q
+# uuid: <q
+# type: command
+# --
+(doom-snippets-expand :uuid "quote")

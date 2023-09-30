@@ -1,0 +1,23 @@
+# Ignore some emacs configuration directory files
+.cache/
+.local/
+auto-save-list/
+eln-cache/
+elpa
+elpaca
+places
+projectile-bookmarks.eld
+recentf
+projectile.cache
+
+# Ignore all backup files
+*~
+
+# Ignore history file
+history
+
+# Ignore plugins directories
+tree-sitter/
+transient/
+codeium/
+eshell/

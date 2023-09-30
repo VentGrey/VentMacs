@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: section
+# key: sec
+# uuid: sec
+# section for xorg.conf
+# --
+Section "${1:Device}"
+        $0
+EndSection

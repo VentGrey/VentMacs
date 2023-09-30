@@ -1,0 +1,11 @@
+# name: go-default-template
+# key: gotemplate
+# condition: (not (file-exists-p (buffer-file-name)))
+# --
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, Go!")
+}
