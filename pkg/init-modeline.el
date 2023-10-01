@@ -6,33 +6,42 @@
 ;; Configuraciones para la modeline de Emacs
 
 ;;; Code:
-
+;;
 ;; Definir nuestros propios indicadores usando las nerd-fonts. Si no están
 ;; presentes en tu sistema puedes instalarlas desde:
 ;; https://www.nerdfonts.com/
+;;
+;; Tratamos de imitar los símbolos de la doom-modeline, pero no son exactamente
+;; lo mismo.
 (defconst my-moodline-glyphs
   '((:checker-info . ?)
-    (:checker-issues . ?)
+    (:checker-issues . ?)
     (:checker-good . ?)
-    (:checker-errored . ?)
-    (:checker-interrupted . ?)
+    (:checker-errored . ?)
+    (:checker-interrupted . ?)
 
-    (:vc-added . ?)
+    (:vc-added . ?)
     (:vc-needs-merge . ?)
     (:vc-needs-update . ?)
     (:vc-conflict . ?)
-    (:vc-good . ?)
+    (:vc-good . ?)
 
     (:buffer-narrowed . ?▼)
     (:buffer-modified . ?)
     (:buffer-read-only . ?)
 
-    (:count-separator . ?✕)
+    (:count-separator . ?)
     )
   "Iconos personalizados para mood-line.")
 
-(use-package mood-line
+(defun enlarge-mode-line ()
+  "Aumentar el tamaño de la modeline."
+  (set-face-attribute 'mode-line nil
+                      :height 104))
 
+(add-hook 'after-init-hook 'enlarge-mode-line)
+
+(use-package mood-line
   ;; Enable mood-line
   :config
   (setq mood-line-glyph-alist my-moodline-glyphs

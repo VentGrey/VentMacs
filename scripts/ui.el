@@ -77,9 +77,5 @@
       scroll-margin 0
       scroll-preserve-screen-position 1)
 
-;; Permitir respuestas con y/n para no escribir como pendejos todo
-(fset 'yes-or-no-p 'y-or-n-p)
-
-
 (provide 'ui)
 ;;; ui.el ends here
