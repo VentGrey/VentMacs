@@ -128,7 +128,6 @@ trap exit_clean INT TERM EXIT
 # Realizar las operaciones en un directorio temporal
 temp_dir=$(mktemp -d)
 
-# Ensure we're working in a secure temp directory
 cd "$temp_dir" || { echo "Error al ingresar al directorio temporal "; exit 1;}
 
 # Comprobar argumentos de línea de comandos

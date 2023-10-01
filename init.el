@@ -151,8 +151,17 @@
 (require 'init-typescript)
 (require 'init-web)
 
-;; ===== PAQUETES TERMINAN AQUI ====
+;; === Configuraciones generales de Emacs
 (require 'ui) ; Mejoras a la interfaz de usuario
 (require 'editor) ; Ajustes sensibles de edición de textos
 (require 'keybindings) ; Atajos de teclado
+
+;; Elpaca es asíncrono y luego de leer el archivo init hace sus desmadres.
+;; El problema es que los hooks after-init-hook y emac-startup-hook se
+;; ejecutan antes de activar los paquetes.
+;;
+;; Con este snippet arreglamos el desmadre anteriormente mencionado.
+(setq elpaca-after-init-time (current-time))
+(elpaca-wait)
+
 ;;; init.el ends here
