@@ -4,7 +4,12 @@ Ventmacs es una capa de configuración personal de Emacs diseñada para mis nece
 
 Esta configuración está hecha de acuerdo a mis necesidades. Podría haber cosas aquí que te gustaría cambiar, te sugiero hagas un fork o, si así lo deseas, puedes tomar *snippets* de código para tu propia configuración, el diseño no debería ser muy complejo para impedirte hacer eso.
 
+> Varios snippets incluidos en esta configuración fueron seleccionados a mano de [doom-snippets](https://github.com/doomemacs/snippets)
+
 ## 📘 Documentación
+
+> **Warning**
+> **El manual aún no está terminado. Por el momento el código es la documentación.**
 
 Para una comprensión profunda, se recomienda revisar los archivos de configuración. Están bien comentados y estructurados para facilitar la lectura y el entendimiento.
 

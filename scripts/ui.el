@@ -72,8 +72,14 @@
 (when (boundp 'x-gtk-use-system-tooltips)
   (setq x-gtk-use-system-tooltips nil))
 
-;; Limitar el scroll a una sola línea
-(setq scroll-conservatively most-positive-fixnum)
+;; Mejorar el scroll a algo más "suave"
+(setq scroll-conservatively most-positive-fixnum
+      scroll-margin 0
+      scroll-preserve-screen-position 1)
+
+;; Permitir respuestas con y/n para no escribir como pendejos todo
+(fset 'yes-or-no-p 'y-or-n-p)
+
 
 (provide 'ui)
 ;;; ui.el ends here

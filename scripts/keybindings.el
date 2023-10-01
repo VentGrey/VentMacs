@@ -59,7 +59,6 @@
  ;; Archivos
  "f" '(:ignore t :which-key "archivos")
  "fs" '(save-buffer :which-key "guardar archivo")
- "fo" '(counsel-find-file :which-key "abrir archivo")
 
  )
 

@@ -10,6 +10,7 @@
 ;; No mantener una versión anterior del código si el archivo se actualiza,
 ;; mostrar en el buffer el archivo actualizado
 (global-auto-revert-mode t)
+(setq load-prefer-newer t)
 
 ;; Guardar la localización del cursor en los archivos abiertos
 (save-place-mode 1)
@@ -25,6 +26,9 @@
 
 ;; No permitir que emacs haga archivos de respaldo. Guardar es tu responsabilidad.
 (setq make-backup-files nil)
+
+;; Solamente ciclar el autocompletado con TAB si hay pocos candidatos del mismo
+(setq completion-cycle-threshold 3)
 
 ;; Eliminar el texto seleccionado en lugar de sobreescribir por encima
 (delete-selection-mode 1)

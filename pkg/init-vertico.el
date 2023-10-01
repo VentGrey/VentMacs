@@ -22,5 +22,13 @@
 	     :init
 	     (marginalia-mode))
 
+(use-package consult
+  :config
+  (setq register-preview-delay 0.5
+        register-preview-function #'consult-register-format)
+  :hook
+  (completion-list-mode . consult-preview-at-point-mode)
+  )
+
 (provide 'init-vertico)
 ;;; init-vertico.el ends here

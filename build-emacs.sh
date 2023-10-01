@@ -70,11 +70,11 @@ echo "Configurando Emacs..."
             --with-png \
             --with-rsvg \
             --without-selinux \
-            CFLAGS="-O2 -march=native -mtune=native -pipe"
+            CFLAGS="-O2 -march=native -mtune=native -pipe -fomit-frame-pointer -fstack-protector-strong"
 
 # Compilar e instalar Emacs
 echo "Compilando e instalando Emacs..."
-make
-# sudo make install
+make -j"$(nproc)"
+sudo make install
 
 echo "¡Emacs ha sido instalado y configurado exitosamente!"

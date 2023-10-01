@@ -12,5 +12,7 @@
       c-doc-domment-style "doxygen"
       c-basic-offset 8)
 
+(setq c-ts-mode-indent-offset 8)
+
 (provide 'init-c)
 ;;; init-c.el ends here
