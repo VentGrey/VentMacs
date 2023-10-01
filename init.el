@@ -1,6 +1,7 @@
 ;;; init.el --- VentMacs, un poco más que Emacs.
 ;; -*- lexical-binding: t -*-
 
+;; Author: VentGrey <ventgrey@gmail.com>
 ;;; Commentary:
 ;;
 ;; Configuración de Emacs un poco más allá.
@@ -149,8 +150,6 @@
 (require 'init-markdown)
 (require 'init-typescript)
 (require 'init-web)
-
-(elpaca-wait) ; Esperar a que terminen todos los procesos de elpaca.
 
 ;; ===== PAQUETES TERMINAN AQUI ====
 (require 'ui) ; Mejoras a la interfaz de usuario
