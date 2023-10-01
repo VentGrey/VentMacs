@@ -32,9 +32,6 @@
 ;; Resaltar la línea que estamos editando
 (global-hl-line-mode t)
 
-;; Autocompletar paréntesis en todos los buffers
-(electric-pair-mode 1)
-
 ;; Elegir la fuente por defecto como JetBrainsMono
 (set-face-attribute 'default nil
 		    :font "JetBrainsMono Nerd Font Mono"

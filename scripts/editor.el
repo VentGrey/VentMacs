@@ -21,6 +21,16 @@
               tab-width 4
               indent-tabs-mode nil)
 
+;; Autocompletar paréntesis en todos los buffers
+(electric-pair-mode 1)
+
+;; Electric indent es una mierda, pero con esto podemos decirle que le baje de huevos con nuestros buffers
+(setq electric-indent-inhibit t)
+
+;; Cuando querramos borrar hacia atrás, borrar todo alv, sean espacios o tabs, no espacio por espacio
+(setq backward-delete-char-untabify-method 'hungry)
+
+
 ;; Cuando salgamos de emacs, no preguntar por los procesos que están en el fondo
 (setq confirm-kill-processes nil)
 

@@ -588,6 +588,26 @@ Para personalizar las configuraciones específicas de este módulo, modifica el 
 - [[https://enlace-al-paquete1.org][NombreDelPaquete1]]: Una breve descripción del paquete y su propósito.
 - [[https://enlace-al-paquete2.org][NombreDelPaquete2]]: Otra breve descripción del paquete y su propósito.
 
+** Puni
+*** Descripción
+
+Este módulo proporciona funcionalidades y configuraciones relacionadas con DESCRIPCIÓN_DEL_MÓDULO en VentMacs.
+
+*** Valores por defecto
+
+- `opcion-modulo-default1`: Describe el valor por defecto y su propósito.
+- `opcion-modulo-default2`: Describe otro valor por defecto y su propósito.
+- ... (añade o elimina opciones según sea necesario)
+
+*** Cómo personalizar
+
+Para personalizar las configuraciones específicas de este módulo, modifica el archivo `init-NOMBRE_DEL_MÓDULO.el` en la carpeta `pkg`. Añade o modifica las opciones según tus preferencias y necesidades.
+
+*** Paquetes relacionados
+
+- [[https://enlace-al-paquete1.org][NombreDelPaquete1]]: Una breve descripción del paquete y su propósito.
+- [[https://enlace-al-paquete2.org][NombreDelPaquete2]]: Otra breve descripción del paquete y su propósito.
+
 ** REST API
 *** Descripción
 

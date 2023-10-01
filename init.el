@@ -111,6 +111,9 @@
 (require 'init-tabs)
 (require 'init-theme)
 
+; === Mejoras de edición
+(require 'init-puni)
+
 ; === Control de Versiones
 (require 'init-magit)
 
