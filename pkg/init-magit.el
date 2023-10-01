@@ -11,7 +11,6 @@
   :defer t)
 
 (use-package git-gutter+
-  :defer t
   :config
   (global-git-gutter+-mode)
   (add-hook 'prog-mode-hook 'git-gutter+-mode))
