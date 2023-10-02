@@ -16,7 +16,6 @@
   (nerd-icons-completion-mode))
 
 (use-package nerd-icons-dired
-  :after dired
   :hook
   (dired-mode . nerd-icons-dired-mode))
 

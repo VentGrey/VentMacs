@@ -261,18 +261,20 @@ Este módulo se encarga de la configuración del =c-mode= y =c-ts-mode= presente
 
 *** Valores por defecto
 
-- `opcion-modulo-default1`: Describe el valor por defecto y su propósito.
-- `opcion-modulo-default2`: Describe otro valor por defecto y su propósito.
-- ... (añade o elimina opciones según sea necesario)
+#+BEGIN_SRC emacs-lisp
+(setq c-default-style "linux"
+      c-doc-domment-style "doxygen")
+
+(setq c-ts-mode-indent-offset 8)
+#+END_SRC
 
 *** Cómo personalizar
 
-Para personalizar las configuraciones específicas de este módulo, modifica el archivo `init-NOMBRE_DEL_MÓDULO.el` en la carpeta `pkg`. Añade o modifica las opciones según tus preferencias y necesidades.
+Si deseas cambiar el estilo de código de C en Emacs puedes cambiar la configuración de =c-default-style= y =c-doc-comment-style=. Si tienes dudas de sus valores o deseas consultarlos solo presiona =C-h v= y escribe cualquiera de las dos variables para obtener una lista de sus posibles valores.
 
 *** Paquetes relacionados
 
-- [[https://enlace-al-paquete1.org][NombreDelPaquete1]]: Una breve descripción del paquete y su propósito.
-- [[https://enlace-al-paquete2.org][NombreDelPaquete2]]: Otra breve descripción del paquete y su propósito.
+- [[https://www.gnu.org/software/emacs/manual/html_mono/ccmode.html][CC Mode]]: Una breve descripción del paquete y su propósito.
 
 ** Codeium
 *** Descripción

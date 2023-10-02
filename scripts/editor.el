@@ -19,17 +19,18 @@
 ;; Insertar espacios en lugar de tabulaciones
 (setq-default c-basic-offset 4
               tab-width 4
-              indent-tabs-mode nil)
+              indent-tabs-mode nil
+              standard-indent 4)
 
 ;; Autocompletar paréntesis en todos los buffers
 (electric-pair-mode 1)
 
 ;; Electric indent es una mierda, pero con esto podemos decirle que le baje de huevos con nuestros buffers
-(setq electric-indent-inhibit t)
+(setq electric-indent-inhibit t
+      electric-indent-mode t)
 
 ;; Cuando querramos borrar hacia atrás, borrar todo alv, sean espacios o tabs, no espacio por espacio
 (setq backward-delete-char-untabify-method 'hungry)
-
 
 ;; Cuando salgamos de emacs, no preguntar por los procesos que están en el fondo
 (setq confirm-kill-processes nil)
@@ -72,5 +73,6 @@
         (js-mode . js-ts-mode)
         (js-json-mode . json-ts-mode)
         ))
+
 (provide 'editor)
 ;;; editor.el ends here

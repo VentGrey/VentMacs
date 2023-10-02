@@ -9,8 +9,7 @@
 
 ;; Estilo de código de Linux. Como es, como deberá de ser siempre.
 (setq c-default-style "linux"
-      c-doc-domment-style "doxygen"
-      c-basic-offset 8)
+      c-doc-comment-style "doxygen")
 
 (setq c-ts-mode-indent-offset 8)
 
