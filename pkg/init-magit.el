@@ -10,10 +10,10 @@
 (use-package magit
   :defer t)
 
-(use-package git-gutter+
+(use-package git-gutter
+  :hook (prog-mode . git-gutter-mode)
   :config
-  (global-git-gutter+-mode)
-  (add-hook 'prog-mode-hook 'git-gutter+-mode))
+  (setq git-gutter:update-interval 1.5))
 
 (use-package git-modes
   :after magit)

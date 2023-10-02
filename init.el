@@ -195,5 +195,4 @@
 ;; Con este snippet arreglamos el desmadre anteriormente mencionado.
 (setq elpaca-after-init-time (current-time))
 (elpaca-wait)
-
 ;;; init.el ends here
