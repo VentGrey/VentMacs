@@ -35,8 +35,20 @@
 
 (use-package company-restclient
   :after company
-  :init
+  :config
   (add-to-list 'company-backends 'company-restclient))
+
+(use-package company-web
+  :after (company web-mode)
+  :config
+  (add-to-list 'company-backends '(company-web-html :with company-yasnippet)))
+
+(use-package company-wordfreq
+  :after company
+  :config
+  (add-hook 'text-mode-hook (lambda ()
+                            (setq-local company-backends '(company-wordfreq))
+                            (setq-local company-transformers nil))))
 
 (provide 'init-company)
 ;;; init-company.el ends here

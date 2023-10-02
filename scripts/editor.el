@@ -34,9 +34,6 @@
 ;; Cuando salgamos de emacs, no preguntar por los procesos que están en el fondo
 (setq confirm-kill-processes nil)
 
-;; No permitir que emacs haga archivos de respaldo. Guardar es tu responsabilidad.
-(setq make-backup-files nil)
-
 ;; Solamente ciclar el autocompletado con TAB si hay pocos candidatos del mismo
 (setq completion-cycle-threshold 3)
 

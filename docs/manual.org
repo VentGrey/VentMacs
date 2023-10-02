@@ -115,6 +115,20 @@ Dentro de este archivo vienen otros chequeos menores como:
 
 El archivo =init.el= es el punto de entrada principal para la configuración de Emacs. Desde aquí se cargan todos los módulos y se definen las configuraciones generales.
 
+*** Configuración de variables específicas de VentMacs
+
+Dentro de =init.el=, se definen varias configuraciones personalizables con el prefijo =ventmacs-=. Estas configuraciones permiten a los usuarios adaptar el entorno según sus necesidades sin modificar el resto de la estructura de la configuración.
+
+Las variables que puedes personalizar son:
+
+- =ventmacs-go-path=: Ruta al directorio binario de Go.
+- =ventmacs-local-bin=: Ruta al directorio binario local.
+- =ventmacs-julia-bin=: Ruta al directorio binario de Julia.
+- =ventmacs-deno-path=: Ruta al directorio de Deno.
+- =ventmacs-deno-bin=: Ruta al directorio binario de Deno.
+
+*** Añadir nuevos módulos
+
 Cuando necesites añadir un nuevo módulo te recomiendo ir a la sección inferior del archivo donde se encuentran todos los imports a los archivos externos de esta configuración.
 
 ** Editor
@@ -203,6 +217,38 @@ Para utilizar cualquiera de estos keybinds es necesario primero presionar la tec
 
 Se encarga de las configuraciones relacionadas con la interfaz de usuario de Emacs, como temas, disposición de ventanas y comportamientos visuales.
 
+Si quieres personalizar la apariencia básica de Emacs puedes acudir a este modo cuando lo necesites, aquí algunas de las configuraciones que podrías necesitar cambiar:
+
+*** Ancho de columna "límite"
+#+BEGIN_SRC emacs-lisp
+(setq-default fill-column 80)
+(add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+#+END_SRC
+
+*** Título de la ventana
+
+#+BEGIN_SRC emacs-lisp
+(setq frame-title-format '("" "[%b] - VentMacs " emacs-version))
+#+END_SRC
+
+*** Tipografías usadas
+
+#+BEGIN_SRC emacs-lisp
+  (set-face-attribute 'default nil
+		    :font "JetBrainsMono Nerd Font Mono"
+		    :height 100
+		    :weight 'light)
+
+(set-face-attribute 'variable-pitch nil
+		    :font "Clear Sans Light"
+		    :height 110
+		    :weight 'light)
+
+(set-face-attribute 'fixed-pitch nil
+		    :font "JetBrainsMono Nerd Font Mono"
+		    :height 100
+		    :weight 'light)
+#+END_SRC
 
 * Módulos
 

@@ -30,7 +30,7 @@
     (:buffer-modified . ?)
     (:buffer-read-only . ?)
 
-    (:count-separator . ?)
+    (:count-separator . ?)
     )
   "Iconos personalizados para mood-line.")
 

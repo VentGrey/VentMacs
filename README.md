@@ -25,6 +25,7 @@ También podrás encontrar el manual en este repositorio en el directorio `docs/
 - Integración de Eglot y Tree-Sitter (Emacs 29.1)
 - Integración con Git
 - Comandos fáciles de aprender gracias a `which-key`
+- Tema de [Spacemacs Dark](https://github.com/nashamri/spacemacs-theme) y paleta de colores [Catppucchin Mocha](https://github.com/catppuccin/emacs), el tema mejor logrado de Emacs + La mejor paleta de colores para programar.
 
 Viene con integraciones para flujos de trabajo que usen:
 

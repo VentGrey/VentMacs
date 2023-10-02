@@ -13,6 +13,7 @@
 ;; Por lo que debemos dejarla en "nil" de nuevo.
 (set-language-environment "UTF-8")
 (setq default-input-method nil)
+(setq make-backup-files nil)
 
 ;; No mostrar el banner de inicio de Emacs. Eso activa un modo que no queremos.
 (setq-default inhibit-startup-message t)
@@ -46,6 +47,34 @@
 
 ;; Cambiar la capacidad del kill-ring
 (setq kill-ring-max 128)
+
+;; Configuraciones específicas de PATH a binarios para VentMacs.
+(defvar ventmacs-go-path (concat (getenv "HOME") "/.go/bin")
+  "Path to the Go binary directory.")
+
+(defvar ventmacs-local-bin (concat (getenv "HOME") "/.local/bin")
+  "Path to the local binary directory.")
+
+(defvar ventmacs-julia-bin (concat (getenv "HOME") "/.julia/julia/bin")
+  "Path to the Julia binary directory.")
+
+(defvar ventmacs-deno-path (concat (getenv "HOME") "/.deno")
+  "Path to the Deno directory.")
+
+(defvar ventmacs-deno-bin (concat ventmacs-deno-path "/bin")
+  "Path to the Deno binary directory.")
+
+;; Setting environment variables based on user-specific configurations
+(let* ((updated-path (concat ventmacs-go-path ":"
+                             ventmacs-local-bin ":"
+                             ventmacs-julia-bin ":"
+                             ventmacs-deno-bin ":"
+                             (getenv "PATH"))))
+  (setenv "GOPATH" ventmacs-go-path)
+  (setenv "DENO_INSTALL" ventmacs-deno-path)
+  (setenv "PATH" updated-path)
+  (setq exec-path (append exec-path (list ventmacs-go-path ventmacs-local-bin ventmacs-julia-bin ventmacs-deno-bin))))
+
 
 ;; == NO EDITAR == Configuración de Elpaca
 (defvar elpaca-installer-version 0.5)
