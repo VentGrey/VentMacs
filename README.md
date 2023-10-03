@@ -1,15 +1,18 @@
-# VentMacs - Un poco más que Emacs 🚀
+# VentMacs - Los ecos Prog-Rock de (e)-lisposting
 
-Ventmacs es una capa de configuración personal de Emacs diseñada para mis necesidades con una fuerte inspiración en Vim y algunas características de otros editores de texto modernos. Además de tomar características de otros editores o configuraciones que he usado a lo largo de los años.
+VentMacs no es solo otro clon de *Macs. Nacido de mi experiencia y viaje personal con los editores de texto, VentMacs es una capa de configuración única para Emacs. Se nutre de la potencia de Vim, incorpora características de editores contemporáneos y se amalgama con las configuraciones que he encontrado y perfeccionado a lo largo de los años.
 
-Esta configuración está hecha de acuerdo a mis necesidades. Podría haber cosas aquí que te gustaría cambiar, te sugiero hagas un fork o, si así lo deseas, puedes tomar *snippets* de código para tu propia configuración, el diseño no debería ser muy complejo para impedirte hacer eso.
+Más allá de su adaptación meticulosa a mis propias necesidades, VentMacs está diseñado para inspirar y ser un recurso para otros. Si alguna vez has buscado un equilibrio entre lo familiar y lo innovador, entre la eficiencia y la personalización, este puede ser tu próximo puerto de escala en el vasto océano de los editores de texto.
 
-> Varios snippets incluidos en esta configuración fueron seleccionados a mano de [doom-snippets](https://github.com/doomemacs/snippets)
+<img height="500" align="left" src="https://github.com/VentGrey/VentMacs/assets/24773698/facb856a-5774-4a79-955f-e67de0d8ea5d">
+
+Aunque está adaptado meticulosamente a mis propias necesidades, VentMacs se ofrece como una inspiración y recurso para otros. Si ves algo que te gustaría adaptar, no dudes en hacer un fork o extraer snippets de código para tu propio uso. Todo está diseñado con la intención de ser accesible y fácil de personalizar.
+
+> Un agradecimiento especial a [doom-snippets](https://github.com/doomemacs/snippets) , de donde he seleccionado cuidadosamente varios snippets para esta configuración.
 
 ## 📘 Documentación
 
-> **Warning**
-> **El manual aún no está terminado. Por el momento el código es la documentación.**
+> El manual está en desarrollo. Mientras tanto, el código sirve como referencia y guía.
 
 Para una comprensión profunda, se recomienda revisar los archivos de configuración. Están bien comentados y estructurados para facilitar la lectura y el entendimiento.
 
@@ -18,13 +21,13 @@ Para leer la documentación completa de mi configuración, luego de instalarla p
 También podrás encontrar el manual en este repositorio en el directorio `docs/`.
 
 ## 🌟 Características destacadas
-- (Idealmente) funciona sin problemas out-of-the-box
-- Rápido y fácil de configurar
-- Minimalista pero funcional
-- Autocompletado
-- Integración de Eglot y Tree-Sitter (Emacs 29.1)
-- Integración con Git
-- Comandos fáciles de aprender gracias a `which-key`
+- Funcionalidad óptima al instalar.
+- Configuración rápida y sencilla.
+- Diseño minimalista, pero plenamente funcional.
+- Autocompletado.
+- Integración con Eglot y Tree-Sitter (Emacs 29.1).
+- Sincronización con Git.
+- Atajos intuitivos a través de `which-key`.
 - Tema de [Spacemacs Dark](https://github.com/nashamri/spacemacs-theme) y paleta de colores [Catppucchin Mocha](https://github.com/catppuccin/emacs), el tema mejor logrado de Emacs + La mejor paleta de colores para programar.
 
 Viene con integraciones para flujos de trabajo que usen:
@@ -36,12 +39,6 @@ Viene con integraciones para flujos de trabajo que usen:
 - Pruebas de REST API
 - Escritura, notas o publicaciones con Org
 - Escritura de blogs con Hugo
-
-## 🐛 Bugs conocidos
-
-Hasta el momento hay un pequeño puñado de bugs conocidos, si no te molestan, eres bienvenid@ de probar la configuración:
-
-1. `treemacs-nerd-icons` no muestra un icono correcto en algunos archivos como lo son las imágenes `.png`
 
 ## 🔍 Instalación
 
