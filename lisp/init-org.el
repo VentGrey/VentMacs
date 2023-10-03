@@ -8,18 +8,18 @@
 ;;; Code:
 
 (use-package toc-org
-  :after org
   :commands toc-org-enable
-  :init (add-hook 'org-mode-hook 'toc-org-enable))
+  :hook (org-mode . toc-org-enable))
 
 (use-package org-bullets
-  :after org)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  :hook (org-mode . org-bullets-mode))
 
 (use-package org-side-tree
   :elpaca (:repo "https://github.com/localauthor/org-side-tree")
-  :defer t
-  :after org)
+  :defer 1)
+
+(use-package org-modern
+    :hook (org-mode . org-modern-mode))
 
 (provide 'init-org)
 ;;; init-org.el ends here

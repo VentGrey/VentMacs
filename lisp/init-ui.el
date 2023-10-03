@@ -1,4 +1,4 @@
-;;; ui.el --- Configuraciones de interfaz de usuario de Emacs.
+;;; init-ui.el --- Configuraciones de interfaz de usuario de Emacs.
 ;; -*- lexical-binding: t -*-
 
 ;;; Commentary:
@@ -74,5 +74,5 @@
       scroll-margin 0
       scroll-preserve-screen-position 1)
 
-(provide 'ui)
-;;; ui.el ends here
+(provide 'init-ui)
+;;; init-ui.el ends here

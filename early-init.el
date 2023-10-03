@@ -19,6 +19,8 @@
 (setq gc-cons-percentage 1
       gc-cons-threshold most-positive-fixnum)
 
+(setq read-process-output-max (* 4 1024 1024))
+
 ;; Creamos una variable para guardar el valor original de `file-name-handler-alist`.
 (defvar my-original-file-name-handler-alist file-name-handler-alist
   "Copia de seguridad del valor original de `file-name-handler-alist`.")

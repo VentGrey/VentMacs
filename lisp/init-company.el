@@ -8,14 +8,15 @@
 ;;; Code:
 
 (use-package company
-  :defer 2
   :diminish
   :config
   (setq company-begin-commands '(self-insert-command)
         company-idle-delay 0.1
-        company-minimum-prefix-length 3
+        company-minimum-prefix-length 0
         company-tooltip-align-annotations t
-        company-tooltip-margin 0)
+        company-tooltip-margin 0
+        company-require-match nil
+        )
   (global-company-mode t))
 
 (use-package company-box
@@ -25,12 +26,12 @@
 
 (use-package company-shell
   :after company
-  :init
+  :config
   (add-to-list 'company-backends '(company-shell company-shell-env)))
 
 (use-package company-emoji
   :after company
-  :init
+  :config
   (add-to-list 'company-backends 'company-emoji))
 
 (use-package company-restclient
@@ -43,12 +44,14 @@
   :config
   (add-to-list 'company-backends '(company-web-html :with company-yasnippet)))
 
-(use-package company-wordfreq
-  :after company
+(use-package codeium
+  :elpaca (:repo "https://github.com/Exafunction/codeium.el")
+  :defer t
+  :init
+  (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
   :config
-  (add-hook 'text-mode-hook (lambda ()
-                            (setq-local company-backends '(company-wordfreq))
-                            (setq-local company-transformers nil))))
+  (setq use-dialog-box nil))
+
 
 (provide 'init-company)
 ;;; init-company.el ends here

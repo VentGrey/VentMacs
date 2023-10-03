@@ -9,13 +9,12 @@
 
 (use-package yasnippet
   :diminish yas-minor-mode
-  :hook (after-init . yas-global-mode)
   :config
   (yas-reload-all)
-  (add-to-list 'yas-snippet-dirs "~/.config/emacs/snippets/"))
+  (add-to-list 'yas-snippet-dirs "~/.config/emacs/snippets/")
+  (yas-global-mode))
 
-(use-package yasnippet-snippets
-  :after yasnippet)
+(use-package yasnippet-snippets)
 
 (provide 'init-yasnippet)
 ;;; init-yasnippet.el ends here

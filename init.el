@@ -124,75 +124,38 @@
 ;; Bloquear el hilo de ejecución hasta que terminen los procesos de elpaca
 (elpaca-wait)
 
-;; Cargar la configuración de Emacs de los siguientes directorios:
-;; - PKG: Directorio de archivos de configuración de todos los paquetes de Emacs. Aquí están las configuraciones de cada paquete instalado.
-;;
 ;; - SCRIPTS: Directorio de archivos de configuración de Emacs, aquí van las configuraciones propiamente de Emacs.
+(add-to-list 'load-path "~/.config/emacs/lisp")
 
-(add-to-list 'load-path "~/.config/emacs/pkg/")
-(add-to-list 'load-path "~/.config/emacs/scripts/")
-
-; === Interfaz de usuario
-(require 'init-dashboard)
-(require 'init-goldenratio)
-(require 'init-modeline)
-(require 'init-nerdicons)
-(require 'init-tabs)
-(require 'init-theme)
-
-; === Mejoras de edición
-(require 'init-puni)
-
-; === Control de Versiones
-(require 'init-magit)
-
-; === Emulación de Vim
-(require 'init-evil)
-
-; === Ayuda para aprender Emacs
-(require 'init-whichkey)
-
-; === ORG MODE
-(require 'init-org)
-
-; === REST API
-(require 'init-rest)
-
-; === Completado y correcciones
-(require 'init-codeium)
-(require 'init-company)
-(require 'init-eglot)
-(require 'init-flycheck)
-(require 'init-vertico)
-(require 'init-yasnippet)
-
-; === Gestión de archivos y proyectos
-(require 'init-projectile)
-(require 'init-treemacs)
-
-; === Contenedores
-(require 'init-docker)
-
-; === Modos o Lenguajes de Programación
-(require 'init-c)
-(require 'init-conf)
-(require 'init-go)
-(require 'init-hugo)
-(require 'init-makefile)
-(require 'init-markdown)
-(require 'init-typescript)
-(require 'init-web)
-
-;; === Configuraciones generales de Emacs
-(require 'ui) ; Mejoras a la interfaz de usuario
-(require 'editor) ; Ajustes sensibles de edición de textos
-(require 'keybindings) ; Atajos de teclado
-
-;; Elpaca es asíncrono y luego de leer el archivo init hace sus desmadres.
-;; El problema es que los hooks after-init-hook y emac-startup-hook se
-;; ejecutan antes de activar los paquetes.
-;;
-;; Con este snippet arreglamos el desmadre anteriormente mencionado.
-(setq elpaca-after-init-time (current-time))
-(elpaca-wait)
+(require 'init-c) ;; C++ con mejor sintáxis
+(require 'init-company) ;; Autocompletado perrón
+(require 'init-conf) ;; Archivos de configuración y más
+(require 'init-dashboard) ;; ¿La gente sale de Emacs?
+(require 'init-docker) ;; Podman malhecho
+(require 'init-editor) ;; Emacs++
+(require 'init-eglot) ;; LSP, no bullshit
+(require 'init-evil) ;; Emacs < (Emacs + Vim); Eval: true
+(require 'init-flycheck) ;; No la cagues
+(require 'init-go) ;; Python menos culero
+(require 'init-goldenratio) ;; Jhonny Joestar
+(require 'init-hugo) ;; Wordpress para nerds
+(require 'init-keybindings) ;; C-h C-h C-h
+(require 'init-magit) ;; git commit -m
+(require 'init-makefile) ;; make install
+(require 'init-markdown) ;; Org sin poderes
+(require 'init-modeline) ;; Algo bien
+(require 'init-nerdicons) ;; Iconitos perrones
+(require 'init-org) ;; Markdown con poderes
+(require 'init-projectile) ;; Organiza tus proyectos
+(require 'init-puni) ;; Completador de paréntesis
+(require 'init-rest) ;; ¿Curl? ¿VSCode? ¿Son paquetes de Emacs?
+(require 'init-tabs) ;; Pestañas como en Atom
+(require 'init-theme) ;; Spacemacs + Catppucchin
+(require 'init-treemacs) ;; Un arbol de archivos por proyecto
+(require 'init-typescript) ;; Any: any => any () {}
+(require 'init-ui) ;; Emacs bonito
+(require 'init-vertico) ;; Completado vertical en el minibuffer
+(require 'init-web) ;; Todo para la cosa más malhecha de la actualidad
+(require 'init-whichkey) ;; ¿Que tecla hace que cosa?
+(require 'init-yasnippet) ;; Autocompletado
 ;;; init.el ends here

@@ -7,7 +7,8 @@
 
 ;;; Code:
 
-(setq read-process-output-max (* 1024 1024))
+(use-package eglot)
+(add-hook 'prog-mode-hook #'eglot-ensure)
 
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

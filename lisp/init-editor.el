@@ -1,4 +1,4 @@
-;;; editor.el --- Configuraciones propias de edición de textos.
+;;; init-editor.el --- Configuraciones propias de edición de textos.
 ;; -*- lexical-binding: t -*-
 
 ;;; Commentary:
@@ -22,6 +22,9 @@
               indent-tabs-mode nil
               standard-indent 4)
 
+;; Tabulaciones inteligentes. Autocompletado o identación.
+(setq tab-always-indent 'complete)
+
 ;; Autocompletar paréntesis en todos los buffers
 (electric-pair-mode 1)
 
@@ -34,6 +37,10 @@
 
 ;; Cuando salgamos de emacs, no preguntar por los procesos que están en el fondo
 (setq confirm-kill-processes nil)
+
+;; Aumentar el tamaño de las recursiones de lisp que podemos hacer
+;; El valor propuesto debería ser más que suficiente, ten cuidado con tu memoria al momento de subirlo. Si el valor por defecto es rebasado, Emacs se va a morir alv. Si lo aumentas mucho es probable que tu máquina se muera ALV si el kernel no brinca a tiempo.
+(setq max-lisp-eval-depth 32768)
 
 ;; Solamente ciclar el autocompletado con TAB si hay pocos candidatos del mismo
 (setq completion-cycle-threshold 3)
@@ -74,7 +81,7 @@
         (js-json-mode . json-ts-mode)
         ))
 
-;; Ajustes de sangría para varios lenguajes de programación
+;; Ajustes de sangría para varios lenguajes de programación.
 (setq-default go-ts-mode-indent-offset tab-width
               go-mode-indent-offset tab-width
 
@@ -84,7 +91,15 @@
 
               ;; JavaScript
               js-mode-indent-offset tab-width
-              js-ts-mode-indent-offset tab-width)
+              js-ts-mode-indent-offset tab-width
 
-(provide 'editor)
-;;; editor.el ends here
+              ;; Bash/SHell
+              sh-mode-indent-offset tab-width
+              bash-ts-mode-indent-offset tab-width
+
+              ;; CSS
+              css-mode-indent-offset tab-width
+              css-ts-mode-indent-offset tab-width)
+
+(provide 'init-editor)
+;;; init-editor.el ends here

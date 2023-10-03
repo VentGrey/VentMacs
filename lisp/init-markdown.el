@@ -8,7 +8,7 @@
 ;;; Code:
 
 (use-package markdown-mode
-  :defer t
+  :mode (("README\\.md\\'" . gfm-mode))
   :custom
   (markdown-command "/usr/bin/pandoc"))
 
