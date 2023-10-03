@@ -44,14 +44,5 @@
   :config
   (add-to-list 'company-backends '(company-web-html :with company-yasnippet)))
 
-(use-package codeium
-  :elpaca (:repo "https://github.com/Exafunction/codeium.el")
-  :defer t
-  :init
-  (add-to-list 'completion-at-point-functions #'codeium-completion-at-point)
-  :config
-  (setq use-dialog-box nil))
-
-
 (provide 'init-company)
 ;;; init-company.el ends here
