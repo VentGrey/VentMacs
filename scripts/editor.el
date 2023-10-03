@@ -74,5 +74,17 @@
         (js-json-mode . json-ts-mode)
         ))
 
+;; Ajustes de sangría para varios lenguajes de programación
+(setq-default go-ts-mode-indent-offset tab-width
+              go-mode-indent-offset tab-width
+
+              ;; Python
+              python-mode-indent-offset tab-width
+              python-ts-mode-indent-offset tab-width
+
+              ;; JavaScript
+              js-mode-indent-offset tab-width
+              js-ts-mode-indent-offset tab-width)
+
 (provide 'editor)
 ;;; editor.el ends here
