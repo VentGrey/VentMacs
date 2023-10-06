@@ -12,11 +12,10 @@
   :config
   (setq company-begin-commands '(self-insert-command)
         company-idle-delay 0.1
-        company-minimum-prefix-length 0
+        company-minimum-prefix-length 3
         company-tooltip-align-annotations t
         company-tooltip-margin 0
-        company-require-match nil
-        )
+        company-require-match nil)
   (global-company-mode t))
 
 (use-package company-box

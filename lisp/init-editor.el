@@ -32,6 +32,9 @@
 (setq electric-indent-inhibit t
       electric-indent-mode t)
 
+;; Activar símbolos bonitos
+(global-prettify-symbols-mode 1)
+
 ;; Cuando querramos borrar hacia atrás, borrar todo alv, sean espacios o tabs, no espacio por espacio
 (setq backward-delete-char-untabify-method 'hungry)
 
