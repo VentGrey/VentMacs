@@ -30,16 +30,8 @@
     (:buffer-modified . ?)
     (:buffer-read-only . ?)
 
-    (:count-separator . ?)
-    )
+    (:count-separator . ?•))
   "Iconos personalizados para mood-line.")
-
-(defun enlarge-mode-line ()
-  "Aumentar el tamaño de la modeline."
-  (set-face-attribute 'mode-line nil
-                      :height 104))
-
-(add-hook 'after-init-hook 'enlarge-mode-line)
 
 (use-package mood-line
   ;; Enable mood-line

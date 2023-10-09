@@ -12,5 +12,13 @@
   :custom
   (markdown-command "/usr/bin/pandoc"))
 
+(use-package grip-mode
+  :ensure t
+  :bind (:map markdown-mode-command-map
+              ("g" . grip-mode))
+  :config
+  (setq grip-binary-path "~/.local/bin/grip"
+        grip-url-browser "firefox"))
+
 (provide 'init-markdown)
 ;;; init-markdown.el ends here
