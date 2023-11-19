@@ -10,5 +10,7 @@
 (use-package eglot)
 (add-hook 'prog-mode-hook #'eglot-ensure)
 
+(use-package eldoc-box)
+
 (provide 'init-eglot)
 ;;; init-eglot.el ends here

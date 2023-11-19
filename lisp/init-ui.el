@@ -35,17 +35,17 @@
 ;; Elegir la fuente por defecto como JetBrainsMono
 (set-face-attribute 'default nil
 		    :font "JetBrainsMono Nerd Font Mono"
-		    :height 100
+		    :height 80
 		    :weight 'light)
 
 (set-face-attribute 'variable-pitch nil
 		    :font "Clear Sans Light"
-		    :height 110
+		    :height 90
 		    :weight 'light)
 
 (set-face-attribute 'fixed-pitch nil
 		    :font "JetBrainsMono Nerd Font Mono"
-		    :height 100
+		    :height 80
 		    :weight 'light)
 
 ;; Marcar los comentarios y las palabras clave con formato italic

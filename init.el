@@ -158,4 +158,7 @@
 (require 'init-web) ;; Todo para la cosa más malhecha de la actualidad
 (require 'init-whichkey) ;; ¿Que tecla hace que cosa?
 (require 'init-yasnippet) ;; Autocompletado
+(require 'init-zig) ;; C del siglo 21
+(require 'init-lua) ;; Python chiquiyo
+(require 'init-perl) ;; jsjs perl
 ;;; init.el ends here

@@ -73,6 +73,7 @@
 ;; Re-mapear los modos normales de emacs a los modos especiales de tree-sitter. Esto para los lenguajes de programación que usaremos en esta configuración de Emacs.
 (setq major-mode-remap-alist
       '(
+        (perl-mode . cperl-mode)
         (python-mode . python-ts-mode)
         (go-mode . go-ts-mode)
         (sh-mode . bash-ts-mode)
