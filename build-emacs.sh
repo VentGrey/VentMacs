@@ -43,6 +43,7 @@ check_dependencies() {
             exit 1
         fi
     done
+    sudo apt install build-essential libgtk-3-dev libgnutls28-dev libtiff5-dev libgif-dev libjpeg-dev libpng-dev libxpm-dev libncurses-dev texinfo libwebkit2gtk-4.1-dev libgccjit-12-dev libtree-sitter-dev libjansson-dev --no-install-recommends --no-install-suggests -yy
 }
 
 download_emacs() {
@@ -89,7 +90,6 @@ configure_and_install_emacs() {
             --with-libsystemd \
             --without-pop \
             --with-mailutils \
-            --with-sound=alsa \
             --without-gconf \
             --with-native-compilation \
             --with-cairo \
